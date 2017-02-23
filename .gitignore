@@ -1,5 +1,6 @@
 .DS_Store
 application/vendor/
+application/bower_components/
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
