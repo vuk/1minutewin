@@ -22,6 +22,31 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
         $users = User::all();
-        var_dump($users);
+        //echo exec('php index.php welcome second');
+        $descriptorspec = array(
+            0 => array("pipe", "r"),
+            1 => array("pipe", "w"),
+            2 => array("file", "logs/error-output.txt", "a")
+        );
+        $process = proc_open('php index.php welcome second', $descriptorspec, $pipes);
+        var_dump($process);
+        if(is_resource($process)) {
+            fwrite($pipes[0], '<?php print_r($_ENV); ?>');
+            fclose($pipes[0]);
+
+            echo stream_get_contents($pipes[1]);
+            fclose($pipes[1]);
+
+            // It is important that you close any pipes before calling
+            // proc_close in order to avoid a deadlock
+            $return_value = proc_close($process);
+            echo "command returned $return_value\n";
+        }
+
 	}
+
+	public function second () {
+	    echo "TESTING";
+	    return "Happy";
+    }
 }

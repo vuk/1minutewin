@@ -1,0 +1,106 @@
+body {
+    background: #eeeeee;
+    font-family: 'Titillium Web', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Titillium Web', sans-serif;
+}
+nav.main, nav.main .top-bar, nav.main .top-bar ul {
+    background: #000000;
+}
+nav.main {
+    box-shadow: 0px 0px 5px #666;
+}
+nav.main .menu a {
+    color: #88c1d5;
+}
+nav.main .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::after {
+    border-color: #88c1d5 transparent transparent;
+}
+#logo {
+    padding: 0;
+}
+#logo img {
+    max-height: 40px;
+}
+section.center article.product-wrapper a h1{
+    color: #333;
+}
+section.center article.product-wrapper h1{
+    text-align: center;
+}
+section.center article.product-wrapper {
+    margin: 0 auto;
+    padding: 35px 0;
+}
+section.center article.product-wrapper .image-outer img {
+    width: 100%;
+}
+section.center article.product-wrapper .product-inner {
+    display: flex;
+    flex-direction: row;
+    background: #ffffff;
+    box-shadow: 0px 1px 3px #999;
+}
+section.center article.product-wrapper .vertical-progress {
+    width: 1em;
+    background: red;
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+section.center article.product-wrapper .product-content {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+section.center .live-data #leader {
+    text-align: center;
+    color: #999;
+}
+section.center .live-data #phase {
+    text-align: center;
+    font-weight: 700;
+    color: #f90;
+}
+section.center .buy-button {
+    margin-top: 0.5em;
+}
+section.center .buy-button a {
+    margin: 0;
+}
+section.center .buy-button .shipping {
+    float: right;
+    color: #fff;
+    font-weight: 600;
+}
+section.center .buy-button .btn-price {
+    float: left;
+    color: #fff;
+    font-weight: 600;
+}
+section.center a .row.keep-in {
+    color: #333333;
+    font-weight: 600;
+}
+section.center .row.keep-in {
+    padding: 0;
+    margin: 0;
+}
+.text-right {
+    text-align: right;
+}
+#old-price {
+    text-decoration: line-through;
+}
+#discount {
+    color: #449d44;
+}
+body .success.button:hover {
+    background: #3e8f3e;
+}
+body .success.button {
+    background: #449d44;
+}
