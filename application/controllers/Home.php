@@ -8,14 +8,27 @@ class Home extends CI_Controller {
      */
     public function index()
     {
-        $this->load->view('header');
+        $data = [
+            'title' => '1 Minute Win'
+        ];
 
-        $this->load->view('home');
+        $this->load->view('header', $data);
 
-        $this->load->view('footer');
+        $this->load->view('home', $data);
+
+        $this->load->view('footer', $data);
     }
 
-    public function second () {
+    public function not_found ()
+    {
+        $data = [
+            'title' => 'Page not found | 1 Minute Win'
+        ];
 
+        $this->load->view('header', $data);
+
+        $this->load->view('not_found', $data);
+
+        $this->load->view('footer', $data);
     }
 }

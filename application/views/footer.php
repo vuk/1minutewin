@@ -1,7 +1,5 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: vuk
- * Date: 24.2.17.
- * Time: 19.52
- */
+<script src="<?= base_url(); ?>application/assets/js/vendor/jquery.js"></script>
+<script src="<?= base_url(); ?>application/assets/js/vendor/foundation.min.js"></script>
+<script src="<?= base_url(); ?>application/assets/js/app.js"></script>
+</body>
+</html>
