@@ -104,3 +104,8 @@ body .success.button:hover {
 body .success.button {
     background: #449d44;
 }
+.title-404 {
+    padding: 2em;
+    text-align: center;
+    font-weight: 700;
+}
