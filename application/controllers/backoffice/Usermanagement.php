@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Usermanagement extends CI_Controller {
 
     public function __construct()
     {
@@ -18,23 +18,28 @@ class Admin extends CI_Controller {
     {
         $submenuItems = [
             'items' => [
-                'Home' => [
-                    'url' => 'backoffice/admin',
-                    'icon' => 'fa fa-home'
+                'All Users' => [
+                    'url' => 'backoffice/usermanagement',
+                    'icon' => 'fa fa-users'
                 ],
-                'Settings' => [
-                    'url' => 'backoffice/settings',
-                    'icon' => 'fa fa-cogs'
+                'New User' => [
+                    'url' => 'backoffice/usermanagement/new',
+                    'icon' => 'fa fa-user'
                 ]
             ]
         ];
 
-        $pageContent = [];
+        $users = User::where('user_level', '>', 1)->paginate(1);
+
+        $pageContent = [
+            'users' => $users,
+            'links' => 'links'
+        ];
 
         $data = [
             'title' => 'Admin Panel | 1 Minute Win',
             'sidemenu' => $this->load->view('admin/sidemenu', $submenuItems, TRUE),
-            'pagecontent' => $this->load->view('admin/welcome', $pageContent, true)
+            'pagecontent' => $this->load->view('admin/user_list', $pageContent, true)
         ];
 
         $this->load->view('admin/header', $data);

@@ -115,3 +115,14 @@ body .success.button {
     margin-top: 2em;
     box-shadow: 0px 0px 3px #ccc;
 }
+
+/** ADMIN STYLES */
+.side-menu-inner, .page-content-wrapper {
+    background: #fff;
+    margin-top: 1em;
+    box-shadow: 0px 0px 3px #ccc;
+}
+
+.page-content-wrapper {
+    padding: 1em;
+}

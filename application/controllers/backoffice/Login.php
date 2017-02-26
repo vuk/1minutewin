@@ -16,6 +16,10 @@ class Login extends CI_Controller {
      */
     public function index()
     {
+        if ($this->session->id > 0 && $this->session->user_level) {
+            redirect('backoffice/admin');
+            die();
+        }
         $data = [
             'title' => 'Admin Login | 1 Minute Win'
         ];
@@ -32,6 +36,11 @@ class Login extends CI_Controller {
     }
 
     public function signin() {
+
+        if ($this->session->id > 0 && $this->session->user_level) {
+            redirect('backoffice/admin');
+            die();
+        }
 
         $this->form_validation->set_rules('password', 'Password', 'required',
             array('required' => 'You must provide a %s.')
@@ -68,8 +77,7 @@ class Login extends CI_Controller {
                         'first_name' => $user->first_name,
                         'last_name' => $user->last_name
                     ]);
-                    var_dump($this->session->email);
-                    echo 'SUCCESS';
+                    redirect('backoffice/login');
                 } else {
                     throw new Exception("Invalid data inserted", 100001);
                 }
@@ -80,5 +88,10 @@ class Login extends CI_Controller {
                 redirect('backoffice/login');
             }
         }
+    }
+
+    public function logout () {
+        $this->session->sess_destroy();
+        redirect('backoffice/login');
     }
 }
