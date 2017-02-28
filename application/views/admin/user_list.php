@@ -29,7 +29,7 @@
             <tbody>
             <?php foreach($users as $key => $user): ?>
             <tr>
-                <td><?= $user->first_name; ?></td>
+                <td><?= $user->user_level == 1 ? '(Admin) ' : '' ?><?= $user->first_name; ?></td>
                 <td><?= $user->last_name; ?></td>
                 <td><a href="<?= base_url('backoffice/usermanagement/edit/'.$user->id) ?>" class="button primary small expanded">Edit</a></td>
                 <?php if ($user->active == 1): ?>

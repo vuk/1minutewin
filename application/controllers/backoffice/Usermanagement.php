@@ -31,7 +31,7 @@ class Usermanagement extends CI_Controller {
     public function index()
     {
 
-        $users = User::where('user_level', '>', 1)->paginate(20);
+        $users = User::paginate(20);
 
         $pageContent = [
             'users' => $users,
