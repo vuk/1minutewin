@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="columns large-12 small-12">
                     <h1>Edit user</h1>
-                    <?php echo form_open('usermanagement/update'); ?>
+                    <?php echo form_open('backoffice/usermanagement/update'); ?>
                     <input type="hidden" name="user_id" value="<?= $user->id ?>">
                     <div class="row">
                         <div class="medium-6 columns">

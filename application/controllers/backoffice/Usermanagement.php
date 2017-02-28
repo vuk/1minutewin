@@ -143,8 +143,44 @@ class Usermanagement extends CI_Controller {
         }
     }
 
-    public function update ($id) {
+    public function update () {
+        $this->form_validation->set_rules('email_address', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('first_name', 'First name', 'required');
+        $this->form_validation->set_rules('last_name', 'Last name', 'required');
+        $this->form_validation->set_rules('user_level', 'User level', 'required');
 
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->session->set_flashdata([
+                'error' => 'Invalid action',
+                'errors' => 'errors'
+            ]);
+            $this->edit($this->input->post('user_id'));
+        }
+        else
+        {
+            try {
+                $user = User::findOrFail($this->input->post('user_id'));
+                $user->first_name = $this->input->post('first_name');
+                $user->last_name = $this->input->post('last_name');
+                $user->email = $this->input->post('email_address');
+                $user->user_level = $this->input->post('user_level');
+                $user->promo_code = $this->input->post('promo_code');
+                if ($this->input->post('password_value')) {
+                    $user->password = password_hash($this->input->post('password_value'), PASSWORD_BCRYPT);
+                }
+                $user->save();
+                $this->session->set_flashdata([
+                    'success' => 'User updated'
+                ]);
+                redirect('backoffice/usermanagement/edit/'.$user->id);
+            } catch (\Exception $e) {
+                $this->session->set_flashdata([
+                    'error' => 'Duplicate email address'
+                ]);
+                $this->edit($this->input->post('user_id'));
+            }
+        }
     }
 
     public function create() {

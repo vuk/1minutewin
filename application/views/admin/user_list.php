@@ -43,7 +43,7 @@
             </tbody>
         </table>
         <div class="pagination">
-            <?= $links ?>
+
         </div>
     </div>
 </div>
