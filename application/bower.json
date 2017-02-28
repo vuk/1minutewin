@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "font-awesome": "fontawesome#^4.7.0",
-    "foundation-sites": "^6.3.0"
+    "foundation-sites": "^6.3.0",
+    "blueimp-file-upload": "^9.17.0"
   }
 }
