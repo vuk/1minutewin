@@ -31,7 +31,7 @@
                 <div class="top-bar-right">
                     <ul class="vertical medium-horizontal dropdown menu" data-dropdown-menu>
                         <li><a href="<?= base_url('backoffice/admin'); ?>"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-                        <li><a href="<?= base_url('backoffice/user-management'); ?>"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+                        <li><a href="<?= base_url('backoffice/usermanagement'); ?>"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
                         <li><a href="<?= base_url('backoffice/orders'); ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Orders</a></li>
                         <li><a href="<?= base_url('backoffice/products'); ?>"><i class="fa fa-cubes" aria-hidden="true"></i> Products</a></li>
                         <li><a href="<?= base_url('backoffice/settings'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a></li>
