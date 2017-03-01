@@ -39,11 +39,13 @@
                     <td><?= $order->created_at; ?></td>
                     <td><a href="<?= base_url('backoffice/orders/edit/'.$order->id) ?>" class="button primary small expanded">Edit</a></td>
                     <?php if ($order->status == 1): ?>
-                        <td><a href="<?= base_url('backoffice/orders/processing/'.$order->id) ?>" class="button warning small expanded">Received (Start Processing)</a></td>
+                        <td><a href="<?= base_url('backoffice/orders/processing/'.$order->id) ?>" class="button secondary small expanded">Received (Start Processing)</a></td>
                     <?php elseif($order->status == 5): ?>
-                        <td><a href="<?= base_url('backoffice/orders/ship/'.$order->id) ?>" class="button secondary small expanded">Processing (Ship)</a></td>
+                        <td><a href="<?= base_url('backoffice/orders/ship/'.$order->id) ?>" class="button warning small expanded">Processing (Ship)</a></td>
                     <?php elseif($order->status == 10): ?>
-                        <td><a href="<?= base_url('backoffice/orders/complete/'.$order->id) ?>" class="button secondary small expanded">Shipped (Complete)</a></td>
+                        <td><a href="<?= base_url('backoffice/orders/complete/'.$order->id) ?>" class="button primary small expanded">Shipped (Complete)</a></td>
+                    <?php elseif($order->status == 15): ?>
+                        <td><a href="javascript:void(0)" class="button success small expanded">Completed</a></td>
                     <?php endif; ?>
                     <td><a href="<?= base_url('backoffice/orders/cancel/'.$order->id) ?>" class="button alert small expanded" onclick="return confirm('This cannot be undone')">Cancel order</a></td>
                 </tr>

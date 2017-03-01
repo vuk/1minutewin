@@ -41,4 +41,79 @@ class Orders extends CI_Controller {
         $this->load->view('admin/home', $data);
         $this->load->view('footer', $data);
     }
+
+    public function edit ($id) {
+
+    }
+
+    public function processing ($id) {
+        try {
+            $id = (int)$id;
+            $order = Order::findOrFail($id);
+            $order->status = 5;
+            $order->save();
+            $this->session->set_flashdata([
+                'success' => 'Order processing'
+            ]);
+            redirect('backoffice/orders');
+        } catch (\Exception $e) {
+            $this->session->set_flashdata([
+                'error' => 'Invalid action'
+            ]);
+            redirect('backoffice/orders');
+        }
+    }
+
+    public function ship ($id) {
+        try {
+            $id = (int)$id;
+            $order = Order::findOrFail($id);
+            $order->status = 10;
+            $order->save();
+            $this->session->set_flashdata([
+                'success' => 'Order shipped'
+            ]);
+            redirect('backoffice/orders');
+        } catch (\Exception $e) {
+            $this->session->set_flashdata([
+                'error' => 'Invalid action'
+            ]);
+            redirect('backoffice/orders');
+        }
+    }
+
+    public function complete ($id) {
+        try {
+            $id = (int)$id;
+            $order = Order::findOrFail($id);
+            $order->status = 15;
+            $order->save();
+            $this->session->set_flashdata([
+                'success' => 'Order completed'
+            ]);
+            redirect('backoffice/orders');
+        } catch (\Exception $e) {
+            $this->session->set_flashdata([
+                'error' => 'Invalid action'
+            ]);
+            redirect('backoffice/orders');
+        }
+    }
+
+    public function cancel ($id) {
+        try {
+            $id = (int)$id;
+            $order = Order::findOrFail($id);
+            $order->delete();
+            $this->session->set_flashdata([
+                'success' => 'Order canceled/deleted'
+            ]);
+            redirect('backoffice/orders');
+        } catch (\Exception $e) {
+            $this->session->set_flashdata([
+                'error' => 'Invalid action'
+            ]);
+            redirect('backoffice/orders');
+        }
+    }
 }
