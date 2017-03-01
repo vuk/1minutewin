@@ -7,8 +7,7 @@
  */
 
 use \Illuminate\Database\Eloquent\Model as Eloquent;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Setting extends Eloquent {
-    use SoftDeletes;
+    public $timestamps = false;
 }

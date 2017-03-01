@@ -25,13 +25,16 @@ class Orders extends CI_Controller {
      */
     public function index()
     {
+        $orders = Order::paginate(20);
 
-        $pageContent = [];
+        $pageContent = [
+            'orders' => $orders
+        ];
 
         $data = [
             'title' => 'All orders | 1 Minute Win',
             'sidemenu' => $this->load->view('admin/sidemenu', $this->submenuItems, TRUE),
-            'pagecontent' => $this->load->view('admin/welcome', $pageContent, true)
+            'pagecontent' => $this->load->view('admin/order_list', $pageContent, true)
         ];
 
         $this->load->view('admin/header', $data);

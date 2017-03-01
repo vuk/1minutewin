@@ -11,4 +11,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Eloquent {
     use SoftDeletes;
+
+    public function product()
+    {
+        return $this->hasOne('Product', 'id', 'product_id');
+    }
+
+    public function user()
+    {
+        return $this->hasOne('User', 'id', 'user_id');
+    }
 }

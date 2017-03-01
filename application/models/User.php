@@ -11,4 +11,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Eloquent {
     use SoftDeletes;
+
+    public function orders()
+    {
+        return $this->hasMany('Order', 'user_id');
+    }
 }
