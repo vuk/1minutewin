@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="columns large-12 small-12">
                     <h1>Edit product</h1>
-                    <?php echo form_open('backoffice/products/update'); ?>
+                    <?php echo form_open_multipart('backoffice/products/update'); ?>
                     <input type="hidden" name="product_id" value="<?= $product->id ?>">
                     <div class="row">
                         <div class="medium-6 columns">
@@ -36,12 +36,27 @@
                     </div>
                     <div class="row">
                         <div class="medium-6 columns">
+                            <label>Shipping price
+                                <input type="number" step="0.01" placeholder="Shipping price" name="shipping_price" value="<?= $product->shipping_price ?>">
+                            </label>
+                        </div>
+                        <div class="medium-6 columns">
+                            <label>Shipping
+                                <input type="text" placeholder="Shipping description" name="shipping" value="<?= $product->shipping ?>">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="medium-6 columns">
                             <label>Initial price
                                 <input type="number" step="0.01" placeholder="Initial price" name="initial_price" value="<?= $product->initial_price ?>">
                             </label>
                         </div>
                         <div class="medium-6 columns">
-
+                            <label for="">
+                                Upload images
+                                <input id="fileupload" type="file" name="files[]" multiple>
+                            </label>
                         </div>
                     </div>
                     <div class="row">
@@ -50,6 +65,18 @@
                                 <textarea placeholder="Product description" name="product_description"><?= $product->product_description ?></textarea>
                             </label>
                         </div>
+                    </div>
+                    <div class="row">
+                            <?php
+                            if (sizeof(json_decode($product->pictures)) > 0):
+                            foreach (json_decode($product->pictures) as $picture):
+                                $pictureArray = explode('/', $picture);
+                                ?>
+                                <div class="large-3 columns small-6 medium-4">
+                                    <img style="width: 100px;" src="<?= base_url($picture); ?>"/><br/>
+                                    <a href="<?= base_url('backoffice/products/deleteimage/'.$product->id.'/'.$pictureArray[0].'/'.$pictureArray[1].'/'.urlencode($pictureArray[2])) ?>">Delete</a>
+                                </div>
+                            <?php endforeach;endif; ?>
                     </div>
                     <div class="row">
                         <div class="medium-12 columns">

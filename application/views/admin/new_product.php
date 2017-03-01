@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="columns large-12 small-12">
                     <h1>New product</h1>
-                    <?php echo form_open('backoffice/products/save'); ?>
+                    <?php echo form_open_multipart('backoffice/products/save'); ?>
                     <div class="row">
                         <div class="medium-6 columns">
                             <label>Product title
@@ -35,12 +35,27 @@
                     </div>
                     <div class="row">
                         <div class="medium-6 columns">
+                            <label>Shipping price
+                                <input type="number" step="0.01" placeholder="Shipping price" name="shipping_price">
+                            </label>
+                        </div>
+                        <div class="medium-6 columns">
+                            <label>Shipping
+                                <input type="text" placeholder="Shipping description" name="shipping">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="medium-6 columns">
                             <label>Initial price
                                 <input type="number" step="0.01" placeholder="Initial price" name="initial_price">
                             </label>
                         </div>
                         <div class="medium-6 columns">
-
+                            <label for="">
+                                Upload images
+                                <input id="fileupload" type="file" name="files[]" multiple>
+                            </label>
                         </div>
                     </div>
                     <div class="row">
