@@ -35,7 +35,7 @@
                     <td><?= $order->id; ?></td>
                     <td><a href="<?= base_url('backoffice/products/edit/'.$order->product->id) ?>"><?= $order->product->product_title; ?></a></td>
                     <td><a href="<?= base_url('backoffice/usermanagement/edit/'.$order->user->id) ?>"><?= $order->user->first_name . ' ' . $order->user->last_name; ?></a></td>
-                    <td>$<?= number_format($order->winning_price, 2); ?></td>
+                    <td><?= $settings->currency_symbol ?><?= number_format($order->winning_price, 2); ?></td>
                     <td><?= $order->created_at; ?></td>
                     <td><a href="<?= base_url('backoffice/orders/edit/'.$order->id) ?>" class="button primary small expanded">Edit</a></td>
                     <?php if ($order->status == 1): ?>

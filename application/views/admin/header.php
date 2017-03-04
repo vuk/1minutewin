@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= base_url(); ?>application/bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="<?= base_url(); ?>application/assets/css/app.css">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:200,400,600,700" rel="stylesheet">
+    <script src="<?= base_url('application/bower_components/tinymce/tinymce.min.js') ?>"></script>
     <title><?= $title ?></title>
 </head>
 <body>
@@ -34,6 +35,7 @@
                         <li><a href="<?= base_url('backoffice/usermanagement'); ?>"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
                         <li><a href="<?= base_url('backoffice/orders'); ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Orders</a></li>
                         <li><a href="<?= base_url('backoffice/products'); ?>"><i class="fa fa-cubes" aria-hidden="true"></i> Products</a></li>
+                        <li><a href="<?= base_url('backoffice/pages'); ?>"><i class="fa fa fa-folder-open-o" aria-hidden="true"></i> Pages</a></li>
                         <li><a href="<?= base_url('backoffice/settings'); ?>"><i class="fa fa-cogs" aria-hidden="true"></i> Settings</a></li>
                         <li><a href="#"><?= $this->session->first_name . ' ' . $this->session->last_name ?></a></li>
                         <li><a href="<?= base_url('backoffice/login/logout'); ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>

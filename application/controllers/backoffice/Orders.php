@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Orders extends CI_Controller {
     protected $submenuItems;
+    protected $settings;
 
     public function __construct()
     {
@@ -18,6 +19,7 @@ class Orders extends CI_Controller {
                 ]
             ]
         ];
+        $this->settings = json_decode(Setting::where('settings_key', 'LIKE', 'settings')->first()->value);
     }
 
     /**
@@ -28,7 +30,8 @@ class Orders extends CI_Controller {
         $orders = Order::paginate(20);
 
         $pageContent = [
-            'orders' => $orders
+            'orders' => $orders,
+            'settings' => $this->settings
         ];
 
         $data = [
