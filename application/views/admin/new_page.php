@@ -29,6 +29,13 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="columns medium-12">
+                            <label>Permalink
+                                <input type="text" placeholder="Permalink" name="slug">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="medium-12 columns">
                             <label>Page content
                                 <textarea name="page_content" id="page_content" placeholder="Page content"></textarea>

@@ -112,6 +112,7 @@ class Pages extends CI_Controller {
     public function update () {
         $this->form_validation->set_rules('page_title', 'Page title', 'required');
         $this->form_validation->set_rules('page_content', 'Page content', 'required');
+        $this->form_validation->set_rules('slug', 'Slug', 'required');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -127,6 +128,7 @@ class Pages extends CI_Controller {
                 $page = Page::findOrFail($this->input->post('page_id'));
                 $page->page_title = $this->input->post('page_title');
                 $page->page_content = $this->input->post('page_content');
+                $page->slug = $this->input->post('slug');
                 $page->save();
                 $this->session->set_flashdata([
                     'success' => 'Page updated'
@@ -144,6 +146,7 @@ class Pages extends CI_Controller {
     public function save () {
         $this->form_validation->set_rules('page_title', 'Page title', 'required');
         $this->form_validation->set_rules('page_content', 'Page content', 'required');
+        $this->form_validation->set_rules('slug', 'Slug', 'required');
 
         if ($this->form_validation->run() == FALSE)
         {
@@ -159,6 +162,7 @@ class Pages extends CI_Controller {
                 $page = new Page;
                 $page->page_title = $this->input->post('page_title');
                 $page->page_content = $this->input->post('page_content');
+                $page->slug = $this->input->post('slug');
                 $page->save();
                 $this->session->set_flashdata([
                     'success' => 'Page updated'

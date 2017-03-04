@@ -21,10 +21,18 @@
                 <div class="columns large-12 small-12">
                     <h1>New page</h1>
                     <?php echo form_open('backoffice/pages/save'); ?>
+                    <input type="hidden" value="<?= $page->id ?>" id="page_id">
                     <div class="row">
                         <div class="columns medium-12">
                             <label>Page title
                                 <input type="text" placeholder="Page title" name="page_title" value="<?= $page->page_title ?>">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columns medium-12">
+                            <label>Permalink
+                                <input type="text" placeholder="Permalink" name="slug" value="<?= $page->slug ?>">
                             </label>
                         </div>
                     </div>

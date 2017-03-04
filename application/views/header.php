@@ -31,7 +31,7 @@
                     <div class="top-bar-right">
                         <ul class="vertical medium-horizontal dropdown menu" data-dropdown-menu>
                             <li><a href="<?= base_url(); ?>"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-                            <li><a href="#"><i class="fa fa-question-circle" aria-hidden="true"></i> About</a></li>
+                            <li><a href="<?= base_url('about'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> About</a></li>
                             <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
                         </ul>
                     </div>

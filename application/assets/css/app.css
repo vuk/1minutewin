@@ -126,3 +126,15 @@ body .success.button {
 .page-content-wrapper {
     padding: 1em;
 }
+
+article.page {
+    background: #fcfcfc;
+    padding: 2em;
+    margin-top: 2em;
+    box-shadow: 0px 0px 3px #ccc;
+}
+
+article.page h1 {
+    text-align: center;
+    margin-bottom: 1em;
+}
