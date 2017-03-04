@@ -29,7 +29,6 @@
             <?php foreach($pages as $key => $page): ?>
                 <tr>
                     <td><?= $page->id; ?></td>
-                    <td></td>
                     <td><a href="<?= base_url('backoffice/pages/edit/'.$page->id) ?>">
                             <?= $page->page_title; ?></a>
                     </td>
