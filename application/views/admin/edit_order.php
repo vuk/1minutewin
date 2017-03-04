@@ -29,7 +29,7 @@
                             </label>
                         </div>
                         <div class="medium-6 columns">
-                            <label>Product
+                            <label>Product:
                                 <a href="<?= base_url('backoffice/products/edit/'. $order->product->id) ?>"><?= $order->product->product_title ?></a>
                             </label>
                         </div>
