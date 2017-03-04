@@ -43,7 +43,67 @@ class Orders extends CI_Controller {
     }
 
     public function edit ($id) {
+        try {
+            $order = Order::findOrFail($id);
+            $pageContent = [
+                'order' => $order
+            ];
 
+            if ($this->session->flashdata('error')) {
+                $pageContent['error'] = $this->session->flashdata('error');
+            }
+
+            if ($this->session->flashdata('success')) {
+                $pageContent['success'] = $this->session->flashdata('success');
+            }
+
+            $data = [
+                'title' => 'Edit order | 1 Minute Win',
+                'sidemenu' => $this->load->view('admin/sidemenu', $this->submenuItems, TRUE),
+                'pagecontent' => $this->load->view('admin/edit_order', $pageContent, true)
+            ];
+
+            $this->load->view('admin/header', $data);
+            $this->load->view('admin/home', $data);
+            $this->load->view('footer', $data);
+        } catch (\Exception $e) {
+            $this->session->set_flashdata([
+                'error' => 'Invalid action'
+            ]);
+            redirect('backoffice/orders');
+        }
+    }
+
+    public function update () {
+        $this->form_validation->set_rules('winning_price', 'Winning price', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->session->set_flashdata([
+                'error' => 'Invalid action',
+                'errors' => 'errors'
+            ]);
+            redirect('backoffice/orders');
+        }
+        else
+        {
+            try {
+                $order = Order::findOrFail($this->input->post('order_id'));
+                $order->winning_price = $this->input->post('winning_price');
+                $order->status = $this->input->post('status');
+                $order->save();
+                $this->session->set_flashdata([
+                    'success' => 'Order updated'
+                ]);
+                redirect('backoffice/orders/edit/'.$order->id);
+            } catch (\Exception $e) {
+                $this->session->set_flashdata([
+                    'error' => 'Order does not exist'
+                ]);
+                redirect('backoffice/orders');
+            }
+        }
     }
 
     public function processing ($id) {

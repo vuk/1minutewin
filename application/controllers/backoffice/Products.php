@@ -177,7 +177,7 @@ class Products extends CI_Controller
             $this->session->set_flashdata([
                 'error' => 'Invalid action'
             ]);
-            redirect('backoffice/product');
+            redirect('backoffice/products');
         }
     }
 
