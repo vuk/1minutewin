@@ -34,7 +34,7 @@
                             <?php foreach($pages as $p): ?>
                                 <li><a href="<?= base_url($p->slug); ?>"><i class="fa <?= $p->fa_icon ?>" aria-hidden="true"></i> <?= $p->page_title; ?></a></li>
                             <?php endforeach; ?>
-                            <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+                            <li><a href="javascript:void(0);" data-toggle="animatedModal11"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>

@@ -3,13 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-    /*public function __construct()
+    public function __construct()
     {
-        if (!isset($this->session->adminID)) {
-            parent::__construct();
-            redirect(base_url('404'));
-        }
-    }*/
+        parent::__construct();
+        $this->pages = Page::where('show_menu', '=', 1)->get();
+    }
 
     /**
      * Index Page for this controller.
@@ -20,8 +18,10 @@ class Login extends CI_Controller {
             redirect('backoffice/admin');
             die();
         }
+
         $data = [
-            'title' => 'Admin Login | 1 Minute Win'
+            'title' => 'Admin Login | 1 Minute Win',
+            'pages' => $this->pages
         ];
 
         if ($this->session->flashdata('error')) {

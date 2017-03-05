@@ -138,3 +138,15 @@ article.page h1 {
     text-align: center;
     margin-bottom: 1em;
 }
+.button.facebook {
+    background: #3b5998;
+    font-weight: 700;
+
+}
+.button.google {
+    background: #db3236;
+    font-weight: 700;
+}
+.button.facebook i, .button.google i {
+    margin-right: 5px;
+}

@@ -19,7 +19,7 @@
         <div class="form-holder">
             <div class="row">
                 <div class="columns large-12 small-12">
-                    <h1>New page</h1>
+                    <h1>Edit page</h1>
                     <?php echo form_open('backoffice/pages/update'); ?>
                     <input type="hidden" value="<?= $page->id ?>" name="page_id">
                     <div class="row">
