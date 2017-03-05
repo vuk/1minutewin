@@ -17,16 +17,22 @@ class Home extends CI_Controller {
      */
     public function index($slug = '')
     {
-        $data = [
-            'title' => '1 Minute Win',
-            'pages' => $this->pages
-        ];
+        try {
+            $product = Product::where('published', '=', 1)->firstOrFail();
+            $data = [
+                'title' => '1 Minute Win',
+                'pages' => $this->pages,
+                'product' => $product
+            ];
 
-        $this->load->view('header', $data);
+            $this->load->view('header', $data);
 
-        $this->load->view('home', $data);
+            $this->load->view('home', $data);
 
-        $this->load->view('footer', $data);
+            $this->load->view('footer', $data);
+        } catch (\Exception $e) {
+            $this->not_found();
+        }
     }
 
     public function not_found ()

@@ -10,7 +10,7 @@
                             </div>
                             <div class="content-outer">
                                 <div class="content-inner">
-                                    <h1>Some title</h1>
+                                    <h1><?= $product->product_title ?></h1>
                                     <div class="live-data">
                                         <div id="phase"><span>Accepting bids</span></div>
                                         <div id="leader"><span>John is winning</span></div>
@@ -26,8 +26,8 @@
                                     </div>
                                     <div class="buy-button">
                                         <a href="#buy" class="success button expanded">
-                                            <span class="btn-price">Bid for $<span id="amount">5</span></span>
-                                            <span><small class="shipping">Shipping $3</small></span>
+                                            <span class="btn-price">Bid for $<span id="amount"><?= $product->initial_price ?></span></span>
+                                            <span><small class="shipping">Shipping $<?= $product->shipping_price ?></small></span>
                                             <span class="clearfix">
                                                 </span>
                                         </a>
@@ -45,8 +45,8 @@
     </div>
 </section>
 <div class="reveal" id="animatedModal10" data-reveal data-close-on-click="true" data-animation-in="hinge-in-from-top" data-animation-out="hinge-out-from-top">
-    <h1>Product description</h1>
-    <p class='lead'>Product description will be here</p>
+    <h1><?= $product->product_title ?></h1>
+    <p class='lead'><?= $product->product_description ?></p>
     <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
