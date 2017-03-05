@@ -133,7 +133,6 @@ article.page {
     margin-top: 2em;
     box-shadow: 0px 0px 3px #ccc;
 }
-
 article.page h1 {
     text-align: center;
     margin-bottom: 1em;
@@ -146,6 +145,13 @@ article.page h1 {
 .button.google {
     background: #db3236;
     font-weight: 700;
+}
+.button.facebook, .button.google {
+    -webkit-transition: all 0.5s; /* Safari */
+    transition: all 0.5s;
+}
+.button.facebook:hover, .button.google:hover {
+    opacity: 0.8;
 }
 .button.facebook i, .button.google i {
     margin-right: 5px;

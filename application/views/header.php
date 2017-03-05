@@ -34,7 +34,14 @@
                             <?php foreach($pages as $p): ?>
                                 <li><a href="<?= base_url($p->slug); ?>"><i class="fa <?= $p->fa_icon ?>" aria-hidden="true"></i> <?= $p->page_title; ?></a></li>
                             <?php endforeach; ?>
-                            <li><a href="javascript:void(0);" data-toggle="animatedModal11"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+                            <?php if($this->session->userdata('id')): ?>
+                                <li><a href="javascript:void(0);" data-toggle="animatedModal11">
+                                        <?= $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name') ?>
+                                    </a></li>
+                                <li><a href="<?= base_url('auth/logout') ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a></li>
+                            <?php else: ?>
+                                <li><a href="javascript:void(0);" data-toggle="animatedModal11"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
