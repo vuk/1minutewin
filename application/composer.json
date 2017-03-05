@@ -15,7 +15,8 @@
     "illuminate/database": "^5.4",
     "paypal/rest-api-sdk-php": "*",
     "hybridauth/hybridauth": "2.8",
-    "illuminate/pagination": "~5.0"
+    "illuminate/pagination": "~5.0",
+    "cboden/ratchet": "^0.3.6"
   },
   "autoload": {
     "classmap": [
