@@ -20,8 +20,8 @@
             <div class="row">
                 <div class="columns large-12 small-12">
                     <h1>New page</h1>
-                    <?php echo form_open('backoffice/pages/save'); ?>
-                    <input type="hidden" value="<?= $page->id ?>" id="page_id">
+                    <?php echo form_open('backoffice/pages/update'); ?>
+                    <input type="hidden" value="<?= $page->id ?>" name="page_id">
                     <div class="row">
                         <div class="columns medium-12">
                             <label>Page title
@@ -53,6 +53,21 @@
                                     });
                                 })();
                             </script>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="columns medium-6">
+                            <label>Font awesome icon
+                                <input type="text" placeholder="Font awesome icon" name="fa_icon" value="<?= $page->fa_icon ?>">
+                            </label>
+                        </div>
+                        <div class="columns medium-6">
+                            <label>Display in menu
+                                <select name="show_menu" id="">
+                                    <option value="0" <?= $page->show_menu == 0 ? "selected='selected'" : ""?>>Don't display</option>
+                                    <option value="1" <?= $page->show_menu == 1 ? "selected='selected'" : ""?>>Display</option>
+                                </select>
+                            </label>
                         </div>
                     </div>
                     <div class="row">

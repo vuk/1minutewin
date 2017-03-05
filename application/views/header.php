@@ -31,7 +31,9 @@
                     <div class="top-bar-right">
                         <ul class="vertical medium-horizontal dropdown menu" data-dropdown-menu>
                             <li><a href="<?= base_url(); ?>"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-                            <li><a href="<?= base_url('about'); ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> About</a></li>
+                            <?php foreach($pages as $p): ?>
+                                <li><a href="<?= base_url($p->slug); ?>"><i class="fa <?= $p->fa_icon ?>" aria-hidden="true"></i> <?= $p->page_title; ?></a></li>
+                            <?php endforeach; ?>
                             <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
                         </ul>
                     </div>

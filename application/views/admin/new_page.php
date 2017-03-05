@@ -55,6 +55,19 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="columns medium-6">
+                            <label>Font awesome icon
+                                <input type="text" placeholder="Font awesome icon" name="fa_icon" >
+                            </label>
+                        </div>
+                        <div class="columns medium-6">
+                            <select name="show_menu" id="">
+                                <option value="0">Don't display</option>
+                                <option value="1">Display</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="medium-12 columns">
                             <label style="margin-top: 20px;">
                                 <input type="submit" class="button primary expanded" value="Submit"/>

@@ -128,6 +128,8 @@ class Pages extends CI_Controller {
                 $page = Page::findOrFail($this->input->post('page_id'));
                 $page->page_title = $this->input->post('page_title');
                 $page->page_content = $this->input->post('page_content');
+                $page->show_menu = $this->input->post('show_menu');
+                $page->fa_icon = $this->input->post('fa_icon');
                 $page->slug = $this->input->post('slug');
                 $page->save();
                 $this->session->set_flashdata([
@@ -135,6 +137,8 @@ class Pages extends CI_Controller {
                 ]);
                 redirect('backoffice/pages/edit/'.$page->id);
             } catch (\Exception $e) {
+                var_dump($e->getMessage());
+                return;
                 $this->session->set_flashdata([
                     'error' => 'Page does not exist'
                 ]);
@@ -162,7 +166,9 @@ class Pages extends CI_Controller {
                 $page = new Page;
                 $page->page_title = $this->input->post('page_title');
                 $page->page_content = $this->input->post('page_content');
+                $page->show_menu = $this->input->post('show_menu');
                 $page->slug = $this->input->post('slug');
+                $page->fa_icon = $this->input->post('fa_icon');
                 $page->save();
                 $this->session->set_flashdata([
                     'success' => 'Page updated'
