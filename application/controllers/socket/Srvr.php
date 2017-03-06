@@ -5,7 +5,7 @@ use Ratchet\WebSocket\WsServer;
 use Ratchet\Http\HttpServer;
 class Srvr extends CI_Controller {
 
-    public function start($slug = '')
+    public function start()
     {
         $server = IoServer::factory(
             new HttpServer(
