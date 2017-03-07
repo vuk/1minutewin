@@ -45,6 +45,8 @@ class Runner {
                     + intval($this->settings->going_twice)
                 );
                 $order->save();
+                $product->stock -= 1;
+                $product->save();
                 $this->currentOrder = $order;
                 $this->server->sendNewOrder($order);
             } catch (\Exception $e) {
