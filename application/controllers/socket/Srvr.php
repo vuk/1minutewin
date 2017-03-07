@@ -13,7 +13,7 @@ class Srvr extends CI_Controller {
             $this->server = IoServer::factory(
                 new HttpServer(
                     new WsServer(
-                        new SockServer()
+                        SockServer::getInstance()
                     )
                 ),
                 8080

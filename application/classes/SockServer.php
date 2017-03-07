@@ -4,9 +4,19 @@ use Ratchet\ConnectionInterface;
 
 class SockServer implements MessageComponentInterface {
     protected $clients;
+    protected $runner;
+    private static $instance = null;
 
     public function __construct() {
         $this->clients = new \SplObjectStorage;
+        $this->runner = \Runner::getInstance();
+    }
+
+    public static function getInstance () {
+        if (SockServer::$instance == null) {
+            SockServer::$instance = new SockServer();
+        }
+        return SockServer::$instance;
     }
 
     public function onOpen(ConnectionInterface $conn) {
@@ -54,6 +64,17 @@ class SockServer implements MessageComponentInterface {
      */
     public function notifyWinner () {
 
+    }
+
+    public function sendNewOrder ($order) {
+        foreach ($this->clients as $client) {
+            $client->send([
+                'type' => 'order',
+                'payload' => [
+                    'order' => $order
+                ]
+            ]);
+        }
     }
 
     public function onClose(ConnectionInterface $conn) {
