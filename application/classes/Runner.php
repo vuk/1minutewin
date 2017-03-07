@@ -25,6 +25,7 @@ class Runner {
         }
         do {
             $this->checkCurrentOrder();
+            sleep(5);
         } while (true);
     }
 
