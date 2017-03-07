@@ -29,6 +29,33 @@ class SockServer implements MessageComponentInterface {
         }
     }
 
+    /**
+     * @param $message
+     * Should update order to reflect new end time (full time restart)
+     * Should update price of order to reflect bid amount
+     * Should update bid count
+     * Should update winning user of order
+     * Should send out message to all clients with new values
+     */
+    public function newBid ($message) {
+
+    }
+
+    /**
+     * Should update order to reflect end status of object
+     * Should send out message to all clients with final results
+     */
+    public function auctionEnded () {
+
+    }
+
+    /**
+     * Send notification to winner of an auction
+     */
+    public function notifyWinner () {
+
+    }
+
     public function onClose(ConnectionInterface $conn) {
         // The connection is closed, remove it, as we can no longer send it messages
         $this->clients->detach($conn);
