@@ -48,6 +48,15 @@ section.center article.product-wrapper .vertical-progress {
     float: left;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+section.center article.product-wrapper .vertical-progress .progress-inner {
+    background: blue;
+    position: absolute;
+    display: block;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
 }
 section.center article.product-wrapper .product-content {
     float: left;

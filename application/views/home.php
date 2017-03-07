@@ -13,10 +13,10 @@
                                     <h1><?= $product->product_title ?></h1>
                                     <div class="live-data">
                                         <div id="phase"><span>Accepting bids</span></div>
-                                        <div id="leader"><span>John is winning</span></div>
+                                        <div id="leader"><span><span id="winning">John</span> is winning</span></div>
                                         <div class="row keep-in">
                                             <div class="columns large-6 small-6">
-                                                <span id="bids">0 Bids</span>
+                                                <span><span id="bids">0</span> Bids</span>
                                             </div>
                                             <div class="columns large-6 small-6 text-right">
                                                 <span id="old-price">$40</span>
@@ -37,7 +37,7 @@
                         </a>
                     </div>
                     <div class="vertical-progress">
-                        &nbsp;
+                        &nbsp;<div class="progress-inner" style="background: blue"></div>
                     </div>
                 </div>
             </article>
