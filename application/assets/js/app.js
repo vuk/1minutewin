@@ -29,8 +29,8 @@
                 }
             })
         },
-        updateScene: function (duration) {
-            this.durationUpdate = duration;
+        updateScene: function (duration, durationLeft) {
+            this.durationUpdate = durationLeft || duration;
             this.totalDuration = duration;
             var elem = jQuery('.progress-inner');
             var id = setInterval(frame, 17);
