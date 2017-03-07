@@ -16,8 +16,7 @@ class Srvr extends CI_Controller {
             8080
         );
 
+        echo "Socket server is running on port 8080. Started at " . date('Y-m-d H:i:s', strtotime('now'));
         $server->run();
-        print "Socket server is running on port 8080. Started at " . date('Y-m-d H:i:s', strtotime('now'));
-        return "Socket server is running on port 8080. Started at " . date('Y-m-d H:i:s', strtotime('now'));
     }
 }
