@@ -7,16 +7,13 @@ class Rnnr extends CI_Controller {
 
     public function start()
     {
-        if ($this->runner === null) {
+        try {
+            $this->socket = socket_create_listen(8081);
             $this->runner = Runner::getInstance();
-            try {
-                $this->socket = socket_create_listen(8081);
-
-                echo "Runner is started at " . date('Y-m-d H:i:s', strtotime('now'))."\n";
-                $this->runner->run();
-            } catch (Exception $e) {
-                echo "Runner is working ok \n";
-            }
+            echo "Runner is started at " . date('Y-m-d H:i:s', strtotime('now'))."\n";
+            $this->runner->run();
+        } catch (Exception $e) {
+            echo "Runner is working ok \n";
         }
     }
 }
