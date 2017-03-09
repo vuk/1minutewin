@@ -9,21 +9,25 @@ class Srvr extends CI_Controller {
 
     public function start()
     {
-        if ($this->server === null) {
-            $this->server = IoServer::factory(
-                new HttpServer(
-                    new WsServer(
-                        SockServer::getInstance()
-                    )
-                ),
-                8080
-            );
+        try {
+            if ($this->server === null) {
+                $this->server = IoServer::factory(
+                    new HttpServer(
+                        new WsServer(
+                            SockServer::getInstance()
+                        )
+                    ),
+                    8080
+                );
 
-            echo "Socket server is running on port 8080. Started at " . date('Y-m-d H:i:s', strtotime('now'))."\n";
-            log_message('debug', "Socket server is running on port 8080. Started at " . date('Y-m-d H:i:s', strtotime('now'))."\n");
-            $this->server->run();
-        } else {
-            log_message('debug', "Server is running ok...");
+                echo "Socket server is running on port 8080. Started at " . date('Y-m-d H:i:s', strtotime('now'))."\n";
+                log_message('debug', "Socket server is running on port 8080. Started at " . date('Y-m-d H:i:s', strtotime('now'))."\n");
+                $this->server->run();
+            } else {
+                log_message('debug', "Server is running ok...");
+            }
+        } catch (\Exception $e) {
+            echo "Socket server is already started";
         }
     }
 }
