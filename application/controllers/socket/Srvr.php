@@ -21,7 +21,7 @@ class Srvr extends CI_Controller {
                 );
 
                 echo "Socket server is running on port 8080. Started at " . date('Y-m-d H:i:s', strtotime('now'))."\n";
-                log_message('debug', "Socket server is running on port 8080. Started at " . date('Y-m-d H:i:s', strtotime('now'))."\n");
+                Runner::slack("Socket server is running on port 8080. Started at " . date('Y-m-d H:i:s', strtotime('now'))."\n", "socket");
                 $this->server->run();
             } else {
                 log_message('debug', "Server is running ok...");
