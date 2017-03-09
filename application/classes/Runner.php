@@ -25,6 +25,7 @@ class Runner {
         }
         do {
             $this->checkCurrentOrder();
+            $this->clearCurrentOrder();
             sleep(5);
         } while (true);
     }
@@ -52,6 +53,12 @@ class Runner {
             } catch (\Exception $e) {
                 $e->getMessage();
             }
+        }
+    }
+
+    private function clearCurrentOrder () {
+        if (strtotime($this->currentOrder->ending_at) < strtotime('now')) {
+            $this->currentOrder = null;
         }
     }
 
