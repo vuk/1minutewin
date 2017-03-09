@@ -58,6 +58,8 @@ class Runner {
 
     private function clearCurrentOrder () {
         if (strtotime($this->currentOrder->ending_at) < strtotime('now')) {
+            $this->currentOrder->ended = 1;
+            $this->currentOrder->save();
             $this->currentOrder = null;
         }
     }
