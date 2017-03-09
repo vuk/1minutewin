@@ -27,7 +27,7 @@ class Srvr extends CI_Controller {
                 log_message('debug', "Server is running ok...");
             }
         } catch (\Exception $e) {
-            echo "Socket server is already started";
+            echo "Socket server is already started"."\n";
         }
     }
 }
