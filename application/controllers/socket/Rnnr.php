@@ -9,10 +9,14 @@ class Rnnr extends CI_Controller {
     {
         try {
             $this->socket = socket_create_listen(8081);
-            $this->runner = Runner::getInstance();
-            echo "Runner is started at " . date('Y-m-d H:i:s', strtotime('now'))."\n";
-            Runner::slack("Runner is started at " . date('Y-m-d H:i:s', strtotime('now'))."\n", "runner");
-            $this->runner->run();
+            if ($this->socket === false) {
+                throw new Exception('Runner is already running');
+            } else {
+                $this->runner = Runner::getInstance();
+                echo "Runner is started at " . date('Y-m-d H:i:s', strtotime('now'))."\n";
+                Runner::slack("Runner is started at " . date('Y-m-d H:i:s', strtotime('now'))."\n", "runner");
+                $this->runner->run();
+            }
         } catch (Exception $e) {
             echo "Runner is working ok \n";
         }
