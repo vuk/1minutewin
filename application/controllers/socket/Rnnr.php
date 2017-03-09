@@ -11,6 +11,7 @@ class Rnnr extends CI_Controller {
             $this->runner = Runner::getInstance();
 
             echo "Runner is started at " . date('Y-m-d H:i:s', strtotime('now'))."\n";
+            log_message('debug', "Runner is started at " . date('Y-m-d H:i:s', strtotime('now'))."\n");
             $this->runner->run();
         }
     }
