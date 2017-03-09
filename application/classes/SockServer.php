@@ -68,12 +68,12 @@ class SockServer implements MessageComponentInterface {
 
     public function sendNewOrder ($order) {
         foreach ($this->clients as $client) {
-            $client->send([
+            $client->send(json_encode([
                 'type' => 'order',
                 'payload' => [
                     'order' => $order
                 ]
-            ]);
+            ]));
         }
     }
 

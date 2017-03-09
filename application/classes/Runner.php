@@ -49,7 +49,8 @@ class Runner {
                 $product->stock -= 1;
                 $product->save();
                 $this->currentOrder = $order;
-                $this->server->sendNewOrder($order);
+                $this->currentOrder->productObject = $this->currentOrder->product();
+                $this->server->sendNewOrder($this->currentOrder);
             } catch (\Exception $e) {
                 $e->getMessage();
             }
