@@ -64,7 +64,7 @@ class Runner {
             ));
 
         // You can get your webhook endpoint from your Slack settings
-        $ch = curl_init("https://hooks.slack.com/services/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");
+        $ch = curl_init("https://hooks.slack.com/services/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");
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
