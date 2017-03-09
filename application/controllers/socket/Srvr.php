@@ -14,7 +14,6 @@ class Srvr extends CI_Controller {
 
             if (!is_resource($connection))
             {
-                fclose($connection);
                 if ($this->server === null) {
                     $this->server = IoServer::factory(
                         new HttpServer(
@@ -31,6 +30,8 @@ class Srvr extends CI_Controller {
                 } else {
                     log_message('debug', "Server is running ok...");
                 }
+            } else {
+                fclose($connection);
             }
         } catch (\Exception $e) {
             //echo "Socket server is already started"."\n";
