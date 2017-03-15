@@ -18,11 +18,14 @@ class Home extends CI_Controller {
     public function index($slug = '')
     {
         try {
-            $product = Product::where('published', '=', 1)->firstOrFail();
+            $order = Order::where('ended', '=', 0)->firstOrFail();
+            $settings = json_decode(Setting::where('settings_key', 'LIKE', 'settings')->first()->value);
             $data = [
                 'title' => '1 Minute Win',
                 'pages' => $this->pages,
-                'product' => $product
+                'order' => $order,
+                'product'=>$order->product,
+                'settings' => $settings
             ];
 
             $this->load->view('header', $data);

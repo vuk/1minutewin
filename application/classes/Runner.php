@@ -17,9 +17,6 @@ class Runner {
     }
 
     public function run() {
-        if ($this->server == null) {
-            $this->server = \SockServer::getInstance();
-        }
         if ($this->settings === null) {
             $this->settings = json_decode(Setting::where('settings_key', 'LIKE', 'settings')->first()->value);
         }
@@ -50,7 +47,6 @@ class Runner {
                 $product->save();
                 $this->currentOrder = $order;
                 $this->currentOrder->productObject = $this->currentOrder->product();
-                $this->server->sendNewOrder($this->currentOrder);
             } catch (\Exception $e) {
                 $e->getMessage();
             }

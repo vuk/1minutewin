@@ -6,28 +6,32 @@
                     <div class="product-content">
                         <a href="#" data-toggle="animatedModal10">
                             <div class="image-outer">
-                                <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=Placeholder&w=400&h=400" alt="">
+                                <img src="<?= base_url(json_decode($product->pictures)[0]) ?>" alt="">
                             </div>
                             <div class="content-outer">
                                 <div class="content-inner">
                                     <h1><?= $product->product_title ?></h1>
                                     <div class="live-data">
                                         <div id="phase"><span>Accepting bids</span></div>
-                                        <div id="leader"><span><span id="winning">John</span> is winning</span></div>
+                                        <?php if($order->bids > 0): ?>
+                                            <div id="leader"><span><span id="winning">John</span> <span id="winning_append">is winning</span></span></div>
+                                        <?php else: ?>
+                                            <div id="leader"><span><span id="winning"></span> <span id="winning_append">Start bidding</span></span></div>
+                                        <?php endif; ?>
                                         <div class="row keep-in">
                                             <div class="columns large-6 small-6">
-                                                <span><span id="bids">0</span> Bids</span>
+                                                <span><span id="bids"><?= $order->bids ?></span> Bids</span>
                                             </div>
                                             <div class="columns large-6 small-6 text-right">
-                                                <span id="old-price">$40</span>
-                                                <span id="discount">60% OFF</span>
+                                                <span id="old-price"><?= $settings->currency_symbol . $product->regular_price ?></span>
+                                                <span id="discount"><?= 100 - ($order->winning_price / $product->regular_price * 100) ?>% OFF</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="buy-button">
                                         <a href="#buy" class="success button expanded">
-                                            <span class="btn-price">Bid for $<span id="amount"><?= $product->initial_price ?></span></span>
-                                            <span><small class="shipping">Shipping $<?= $product->shipping_price ?></small></span>
+                                            <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount"><?= $product->initial_price ?></span></span>
+                                            <span><small class="shipping">Shipping <?= $settings->currency_symbol ?><?= $product->shipping_price ?></small></span>
                                             <span class="clearfix">
                                                 </span>
                                         </a>
@@ -44,9 +48,61 @@
         </div>
     </div>
 </section>
-<div class="reveal" id="animatedModal10" data-reveal data-close-on-click="true" data-animation-in="hinge-in-from-top" data-animation-out="hinge-out-from-top">
-    <h1><?= $product->product_title ?></h1>
-    <p class='lead'><?= $product->product_description ?></p>
+<div class="reveal large" id="animatedModal10" data-reveal data-close-on-click="true" data-animation-in="hinge-in-from-top" data-animation-out="hinge-out-from-top">
+    <div class="row">
+        <div class="columns large-12">
+            <h1><?= $product->product_title ?></h1>
+            <div class="row">
+                <div class="columns large-8">
+                    <div class="gallery-wrapper row">
+                        <div class="active-image-wrapper columns large-8">
+                            <img id="activeImage" src="<?= base_url(json_decode($product->pictures)[0]) ?>"/>
+                        </div>
+                        <div class="thumbs columns large-4">
+                            <?php foreach(json_decode($product->pictures) as $picture): ?>
+                                <div class="thumb-wrapper">
+                                    <img class="thumb" data-full="<?= base_url($picture) ?>" src="<?= base_url('_thumb/'.$picture) ?>"/>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns large-4">
+                    <div class="content-inner modal-content-inner">
+                        <div class="live-data">
+                            <div id="phase"><span>Accepting bids</span></div>
+                            <?php if($order->bids > 0): ?>
+                                <div id="leader"><span><span id="winning">John</span> <span id="winning_append">is winning</span></span></div>
+                            <?php else: ?>
+                                <div id="leader"><span><span id="winning"></span> <span id="winning_append">Start bidding</span></span></div>
+                            <?php endif; ?>
+                            <div class="row keep-in">
+                                <div class="columns large-6 small-6">
+                                    <span><span id="bids"><?= $order->bids ?></span> Bids</span>
+                                </div>
+                                <div class="columns large-6 small-6 text-right">
+                                    <span id="old-price"><?= $settings->currency_symbol . $product->regular_price ?></span>
+                                    <span id="discount"><?= 100 - ($order->winning_price / $product->regular_price * 100) ?>% OFF</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buy-button">
+                            <a href="#buy" class="success button expanded">
+                                <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount"><?= $product->initial_price ?></span></span>
+                                <span><small class="shipping">Shipping <?= $settings->currency_symbol ?><?= $product->shipping_price ?></small></span>
+                                <span class="clearfix">
+                                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="description modal-content-inner">
+                        <h4>Description:</h4>
+                        <p><?= $product->product_description ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>

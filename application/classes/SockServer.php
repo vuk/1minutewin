@@ -5,11 +5,13 @@ use Ratchet\ConnectionInterface;
 class SockServer implements MessageComponentInterface {
     protected $clients;
     protected $runner;
+    protected $order;
     private static $instance = null;
 
     public function __construct() {
         $this->clients = new \SplObjectStorage;
         $this->runner = \Runner::getInstance();
+        $this->order = Order::where('ending_at', '>', date('Y-m-d H:i:s', strtotime('now')));
     }
 
     public static function getInstance () {

@@ -65,36 +65,36 @@ section.center article.product-wrapper .product-content {
     flex: 1;
 }
 
-section.center .live-data #leader {
+.live-data #leader {
     text-align: center;
     color: #999;
 }
-section.center .live-data #phase {
+.live-data #phase {
     text-align: center;
     font-weight: 700;
     color: #f90;
 }
-section.center .buy-button {
+.buy-button {
     margin-top: 0.5em;
 }
-section.center .buy-button a {
+.buy-button a {
     margin: 0;
 }
-section.center .buy-button .shipping {
+.buy-button .shipping {
     float: right;
     color: #fff;
     font-weight: 600;
 }
-section.center .buy-button .btn-price {
+.buy-button .btn-price {
     float: left;
     color: #fff;
     font-weight: 600;
 }
-section.center a .row.keep-in {
+a .row.keep-in {
     color: #333333;
     font-weight: 600;
 }
-section.center .row.keep-in {
+.row.keep-in {
     padding: 0;
     margin: 0;
 }
@@ -164,4 +164,23 @@ article.page h1 {
 }
 .button.facebook i, .button.google i {
     margin-right: 5px;
+}
+.thumb-wrapper {
+    padding: 0 10% 10% 10%;
+    text-align: center;
+}
+.thumb-wrapper img {
+    width: 100%;
+    border: 5px solid #ccc;
+    cursor: pointer;
+}
+.thumb-wrapper.active img {
+    border-color: #0b97c4;
+}
+.modal-content-inner {
+    padding: 10px;
+    border: 1px solid #eee;
+}
+.modal-content-inner.description {
+    margin-top: 10px;
 }

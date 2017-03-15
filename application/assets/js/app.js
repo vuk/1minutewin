@@ -43,11 +43,21 @@
                     elem.height((self.durationUpdate / self.totalDuration * 100).toFixed(4) + '%');
                 }
             }
+        },
+        selectImage: function () {
+            if (jQuery('.thumb-wrapper').length > 0) {
+                jQuery('.thumb-wrapper img').click( function () {
+                    jQuery('#activeImage').attr('src', jQuery(this).attr('data-full'));
+                    jQuery('.thumb-wrapper').removeClass('active');
+                    jQuery(this).parent().addClass('active');
+                });
+            }
         }
     };
 
     $(document).ready(function () {
         MinuteWin.initialize('.product-wrapper');
         MinuteWin.updateScene(60000);
+        MinuteWin.selectImage();
     });
 })();

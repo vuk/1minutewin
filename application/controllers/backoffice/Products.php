@@ -122,6 +122,7 @@ class Products extends CI_Controller
                             if (move_uploaded_file($_FILES["files"]["tmp_name"][$f], $path . date('Ym/', strtotime('now')) . str_replace(' ', '', $name)))
                                 $count++; // Number of successfully uploaded file
                             $files[] = $path . date('Ym/', strtotime('now')) . str_replace(' ', '', $name);
+                            $this->_create_thumbnail($path, $name, 200, 200);
                         }
                     }
                 }
@@ -206,7 +207,7 @@ class Products extends CI_Controller
             try {
                 $product = Product::findOrFail($this->input->post('product_id'));
                 if (sizeof(json_decode($product->pictures)) > 0) {
-                    foreach(json_decode($product->pictures) as $picture) {
+                    foreach (json_decode($product->pictures) as $picture) {
                         $files[] = $picture;
                     }
                 }
@@ -228,6 +229,7 @@ class Products extends CI_Controller
                             if (move_uploaded_file($_FILES["files"]["tmp_name"][$f], $path . date('Ym/', strtotime('now')) . str_replace(' ', '', $name)))
                                 $count++; // Number of successfully uploaded file
                             $files[] = $path . date('Ym/', strtotime('now')) . str_replace(' ', '', $name);
+                            $this->_create_thumbnail($path, $name, 200, 200);
                         }
                     }
                 }
@@ -242,12 +244,12 @@ class Products extends CI_Controller
                 $product->pictures = json_encode($files);
                 $product->save();
                 $this->session->set_flashdata([
-                    'success' => 'New user added'
+                    'success' => 'Product updated'
                 ]);
                 redirect('backoffice/products/edit/' . $product->id);
             } catch (\Exception $e) {
                 $this->session->set_flashdata([
-                    'error' => 'Duplicate email address'
+                    'error' => 'Error occured: '. $e->getMessage()
                 ]);
                 $this->create();
             }
@@ -312,14 +314,16 @@ class Products extends CI_Controller
         }
     }
 
-    public function deleteimage($id, $folder, $subfolder, $image) {
+    public function deleteimage($id, $folder, $subfolder, $image)
+    {
         try {
             $product = Product::findOrFail($id);
             $images = json_decode($product->pictures);
             $newImages = [];
-            foreach($images as $img) {
-                if ($img == $folder.'/'.$subfolder.'/'.$image) {
+            foreach ($images as $img) {
+                if ($img == $folder . '/' . $subfolder . '/' . $image) {
                     @unlink($img);
+                    @unlink('_thumb/'.$img);
                 } else {
                     $newImages[] = $img;
                 }
@@ -329,13 +333,33 @@ class Products extends CI_Controller
             $this->session->set_flashdata([
                 'success' => 'Deleted image'
             ]);
-            redirect('backoffice/products/edit/'.$id);
+            redirect('backoffice/products/edit/' . $id);
         } catch (\Exception $e) {
             $this->session->set_flashdata([
                 'error' => 'Invalid action'
             ]);
-            redirect('backoffice/products/edit/'.$id);
+            redirect('backoffice/products/edit/' . $id);
         }
 
+    }
+
+    function _create_thumbnail($path, $name, $width, $height)
+    {
+        $this->load->library('image_lib');
+        $config['image_library'] = 'gd';
+        $config['source_image'] = $path . date('Ym/', strtotime('now')) . str_replace(' ', '', $name);
+        $config['create_thumb'] = TRUE;
+        $config['thumb_marker'] = '';
+        $config['maintain_ratio'] = TRUE;
+        $config['width'] = $width;
+        $config['height'] = $height;
+        if (!file_exists('_thumb/' . $path . date('Ym/', strtotime('now')))) {
+            mkdir('_thumb/' . $path . date('Ym/', strtotime('now')), 0775, true);
+        }
+        $config['new_image'] = '_thumb/' . $path . date('Ym/', strtotime('now')) . str_replace(' ', '', $name);
+        $this->image_lib->initialize($config);
+        if (!$this->image_lib->resize()) {
+            echo $this->image_lib->display_errors();
+        }
     }
 }
