@@ -31,8 +31,8 @@ class Srvr extends CI_Controller {
             });
         });
         echo "Socket server listening on port 4000.\n";
-        echo "You can connect to it by running: telnet localhost 4000\n";
-        $socket->listen(4000);
+        echo "You can connect to it by running: telnet localhost 8080\n";
+        $socket->listen(8080);
         $loop->run();
     }
 
