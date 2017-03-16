@@ -12,6 +12,7 @@ class Rnnr extends CI_Controller {
         do {
             $this->checkCurrentOrder();
             $this->clearCurrentOrder();
+            echo "Loop started";
             sleep(5);
         } while (true);
     }
@@ -36,6 +37,7 @@ class Rnnr extends CI_Controller {
                 $product->save();
                 $this->currentOrder = $order;
                 $this->currentOrder->productObject = $this->currentOrder->product();
+                echo json_encode($this->currentOrder);
             } catch (\Exception $e) {
                 $e->getMessage();
             }

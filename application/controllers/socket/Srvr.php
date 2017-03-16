@@ -26,7 +26,7 @@ class Srvr extends CI_Controller {
             $loop->addTimer(0.001, function($timer) use ($runner) {
                 $runner->start($timer->getLoop());
                 $runner->stdout->on('data', function($output) {
-                    echo "Child script says: {$output}";
+                    echo "{$output}";
                 });
             });
             // END START RUNNER SERVICE
@@ -41,7 +41,7 @@ class Srvr extends CI_Controller {
             $loop->addTimer(0.001, function($timer) use ($bidder) {
                 $bidder->start($timer->getLoop());
                 $bidder->stdout->on('data', function($output) {
-                    echo "Child script says: {$output}";
+                    echo "{$output}";
                 });
             });
             // END START BIDDER SERVICE
