@@ -26,6 +26,12 @@ class Srvr extends CI_Controller {
             $loop->addTimer(0.001, function($timer) use ($runner) {
                 $runner->start($timer->getLoop());
                 $runner->stdout->on('data', function($output) {
+                    $childData = json_decode($output);
+                    $message = [
+                        'type'  => 'newOrder',
+                        'data' => $childData
+                    ];
+                    $this->notifyAll(json_encode($message));
                     echo "{$output}";
                 });
             });
@@ -66,6 +72,12 @@ class Srvr extends CI_Controller {
             $loop->run();
         } catch (\Exception $e) {
             var_dump($e->getMessage());
+        }
+    }
+
+    private function notifyAll($data) {
+        foreach ($this->clients as $current) {
+            $current->write($data);
         }
     }
 }
