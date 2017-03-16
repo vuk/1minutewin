@@ -43,10 +43,12 @@ class Rnnr extends CI_Controller {
     }
 
     private function clearCurrentOrder () {
-        if (strtotime($this->currentOrder->ending_at) < strtotime('now')) {
-            $this->currentOrder->ended = 1;
-            $this->currentOrder->save();
-            $this->currentOrder = null;
+        if ($this->currentOrder !== null) {
+            if (strtotime($this->currentOrder->ending_at) < strtotime('now')) {
+                $this->currentOrder->ended = 1;
+                $this->currentOrder->save();
+                $this->currentOrder = null;
+            }
         }
     }
 
