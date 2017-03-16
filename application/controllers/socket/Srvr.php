@@ -68,7 +68,7 @@ class Srvr extends CI_Controller {
                 });
             });
             echo "Socket server listening on port 8080.\n";
-            var_dump($socket);
+            var_dump('test');
             $socket->listen(8080);
             $loop->run();
         } catch (\Exception $e) {
