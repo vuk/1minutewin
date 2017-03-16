@@ -17,7 +17,7 @@ class Srvr extends CI_Controller {
             $socket = new React\Socket\Server($loop);
 
             // START RUNNER SERVICE
-            $runner = new React\ChildProcess\Process('php index.php rnnr start');
+            $runner = new React\ChildProcess\Process('php index.php socket/rnnr start');
 
             $runner->on('exit', function($exitCode, $termSignal) {
                 echo "Runner process stopped";
@@ -32,7 +32,7 @@ class Srvr extends CI_Controller {
             // END START RUNNER SERVICE
 
             // START BIDDER SERVICE
-            $bidder = new React\ChildProcess\Process('php index.php bidder start');
+            $bidder = new React\ChildProcess\Process('php index.php socket/bidder start');
 
             $bidder->on('exit', function($exitCode, $termSignal) {
                 echo "Bidder process stopped";
