@@ -5,7 +5,6 @@ class Srvr extends CI_Controller {
     protected $clients;
     protected $runner;
     protected $order;
-    private static $instance = null;
 
     public function __construct() {
         parent::__construct();
@@ -17,7 +16,7 @@ class Srvr extends CI_Controller {
         $socket = new React\Socket\Server($loop);
 
         // START RUNNER SERVICE
-        $runner = new React\ChildProcess\Process('php index.php rnnr start');
+        /*$runner = new React\ChildProcess\Process('php index.php rnnr start');
 
         $runner->on('exit', function($exitCode, $termSignal) {
             echo "Runner process stopped";
@@ -28,11 +27,11 @@ class Srvr extends CI_Controller {
             $runner->stdout->on('data', function($output) {
                 echo "Child script says: {$output}";
             });
-        });
+        });*/
         // END START RUNNER SERVICE
 
         // START BIDDER SERVICE
-        $bidder = new React\ChildProcess\Process('php index.php bidder start');
+        /*$bidder = new React\ChildProcess\Process('php index.php bidder start');
 
         $bidder->on('exit', function($exitCode, $termSignal) {
             echo "Runner process stopped";
@@ -43,7 +42,7 @@ class Srvr extends CI_Controller {
             $bidder->stdout->on('data', function($output) {
                 echo "Child script says: {$output}";
             });
-        });
+        });*/
         // END START BIDDER SERVICE
 
         $socket->on('connection', function ($conn) {
