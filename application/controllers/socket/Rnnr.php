@@ -12,6 +12,7 @@ class Rnnr extends CI_Controller {
         do {
             $this->checkCurrentOrder();
             $this->clearCurrentOrder();
+            sleep(5);
         } while (true);
     }
 
