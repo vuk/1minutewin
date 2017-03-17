@@ -92,7 +92,7 @@ class SockServer implements MessageComponentInterface {
 
         $this->loop->addTimer(0.001, function($timer) {
             echo "Socket server running in loop";
-            $this->server->run();
+            //$this->server->run();
         });
 
         $this->loop->run();
