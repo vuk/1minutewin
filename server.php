@@ -1,5 +1,8 @@
 <?php
 require 'application/vendor/autoload.php';
+
+$clients = new \SplObjectStorage();
+
 $loop = React\EventLoop\Factory::create();
 $socket = new React\Socket\Server($loop);
 
@@ -39,10 +42,10 @@ $loop->addTimer(0.001, function($timer) use ($bidder) {
 });*/
 // END START BIDDER SERVICE
 
-$socket->on('connection', function ($conn) {
-    $this->clients->attach($conn);
-    $conn->on('data', function ($data) use ($conn) {
-        foreach ($this->clients as $current) {
+$socket->on('connection', function ($conn) use ($clients) {
+    $clients->attach($conn);
+    $conn->on('data', function ($data) use ($conn, $clients) {
+        foreach ($clients as $current) {
             if ($conn === $current) {
                 continue;
             }
@@ -50,8 +53,8 @@ $socket->on('connection', function ($conn) {
             $current->write($data);
         }
     });
-    $conn->on('end', function () use ($conn) {
-        $this->clients->detach($conn);
+    $conn->on('end', function () use ($conn, $clients) {
+        $clients->detach($conn);
     });
 });
 echo "Socket server listening on port 8080.\n";
