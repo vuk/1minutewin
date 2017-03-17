@@ -7,8 +7,10 @@ use React\ChildProcess\Process;
 
 class SockServer implements MessageComponentInterface {
     protected $clients;
+    protected $loop;
 
-    public function __construct() {
+    public function __construct(React\EventLoop\Factory $loop) {
+        $this->loop = $loop;
         $this->clients = new \SplObjectStorage;
         $this->initChildProcesses();
     }
