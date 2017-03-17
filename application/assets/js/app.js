@@ -13,6 +13,16 @@
             this.conn.onmessage = function(e) {
                 console.log(e.data);
             };
+
+            this.conn.onclose = function (e) {
+                console.log(e);
+                console.log('closed');
+            };
+
+            this.conn.onerror = function (e) {
+                console.log(e);
+                console.log('error');
+            };
         },
         newBid: function (message) {
             this.durationUpdate = this.totalDuration;

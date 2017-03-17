@@ -16,7 +16,8 @@
     "paypal/rest-api-sdk-php": "*",
     "hybridauth/hybridauth": "2.8",
     "illuminate/pagination": "~5.0",
-    "react/react": "^0.4.2"
+    "react/react": "^0.4.2",
+    "cboden/ratchet": "^0.3.6"
   },
   "autoload": {
     "classmap": [
