@@ -58,5 +58,5 @@ $socket->on('connection', function ($conn) use ($clients) {
     });
 });
 echo "Socket server listening on port 8080.\n";
-$socket->listen(8080, '0.0.0.0');
+$socket->listen(8080, '54.89.141.77');
 $loop->run();
