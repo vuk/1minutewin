@@ -32,7 +32,7 @@ class Srvr extends CI_Controller {
                         'data' => $childData
                     ];
                     $this->notifyAll(json_encode($message));
-                    echo "{$output}";
+                    echo json_encode($message);
                 });
             });
             // END START RUNNER SERVICE

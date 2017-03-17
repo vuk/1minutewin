@@ -2,7 +2,7 @@
     $(document).foundation();
 
     MinuteWin = {
-        conn: new WebSocket('ws://54.89.141.77:8080/socket/srvr'),
+        conn: new WebSocket('ws://54.89.141.77:8080'),
         durationUpdate: 0,
         totalDuration: 0,
         initialize: function (selector) {
