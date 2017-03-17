@@ -1,5 +1,5 @@
 <?php
-
+require 'application/vendor/autoload.php';
 $loop = React\EventLoop\Factory::create();
 $socket = new React\Socket\Server($loop);
 
