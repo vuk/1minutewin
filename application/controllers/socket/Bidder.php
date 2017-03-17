@@ -6,7 +6,6 @@ class Bidder extends CI_Controller {
     public function start () {
         while(true) {
             echo "Bid";
-            sleep(5);
         }
     }
 
