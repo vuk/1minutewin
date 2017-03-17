@@ -2,14 +2,13 @@
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-use React\EventLoop\Factory;
 use React\ChildProcess\Process;
 
 class SockServer implements MessageComponentInterface {
     protected $clients;
     protected $loop;
 
-    public function __construct(React\EventLoop\Factory $loop) {
+    public function __construct(React\EventLoop\StreamSelectLoop $loop) {
         $this->loop = $loop;
         $this->clients = new \SplObjectStorage;
         $this->initChildProcesses();
@@ -49,7 +48,6 @@ class SockServer implements MessageComponentInterface {
     }
 
     private function initChildProcesses () {
-        $loop = Factory::create();
 
         // START RUNNER SERVICE
         $runner = new Process('php index.php socket/rnnr start');
@@ -58,7 +56,7 @@ class SockServer implements MessageComponentInterface {
             echo "Runner process stopped";
         });
 
-        $loop->addTimer(0.001, function($timer) use ($runner) {
+        $this->loop->addTimer(0.001, function($timer) use ($runner) {
             $runner->start($timer->getLoop());
             $runner->stdout->on('data', function($output) {
                 $childData = json_decode($output);
@@ -79,7 +77,7 @@ class SockServer implements MessageComponentInterface {
             echo "Bidder process stopped";
         });
 
-        $loop->addTimer(0.001, function($timer) use ($bidder) {
+        $this->loop->addTimer(0.001, function($timer) use ($bidder) {
             $bidder->start($timer->getLoop());
             $bidder->stdout->on('data', function($output) {
                 echo "{$output}";
@@ -87,7 +85,7 @@ class SockServer implements MessageComponentInterface {
         });
         // END START BIDDER SERVICE
 
-        $loop->run();
+        $this->loop->run();
     }
 
 
