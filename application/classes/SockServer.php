@@ -47,7 +47,7 @@ class SockServer implements MessageComponentInterface {
     }
 
     private function initChildProcesses () {
-        /*$loop = Factory::create();
+        $loop = Factory::create();
 
         // START RUNNER SERVICE
         $runner = new Process('php index.php socket/rnnr start');
@@ -85,7 +85,7 @@ class SockServer implements MessageComponentInterface {
         });
         // END START BIDDER SERVICE
 
-        $loop->run();*/
+        $loop->run();
     }
 
 
