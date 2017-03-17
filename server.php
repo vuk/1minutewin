@@ -44,6 +44,7 @@ $loop->addTimer(0.001, function($timer) use ($bidder) {
 
 $socket->on('connection', function ($conn) use ($clients) {
     $clients->attach($conn);
+    var_dump($conn);
     $conn->on('data', function ($data) use ($conn, $clients) {
         foreach ($clients as $current) {
             if ($conn === $current) {
