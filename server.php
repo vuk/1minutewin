@@ -4,7 +4,10 @@ require 'application/vendor/autoload.php';
 $clients = new \SplObjectStorage();
 
 $loop = React\EventLoop\Factory::create();
-$socket = new React\Socket\Server($loop);
+$socket = new React\Socket\Server($loop, [
+    'so_reuseport' => true,
+    'so_broadcast' => true
+]);
 
 // START RUNNER SERVICE
 /*$runner = new React\ChildProcess\Process('php index.php socket/rnnr start');
@@ -58,5 +61,5 @@ $socket->on('connection', function ($conn) use ($clients) {
     });
 });
 echo "Socket server listening on port 8080.\n";
-$socket->listen(8080, 'localhost');
+$socket->listen(8080, '0');
 $loop->run();
