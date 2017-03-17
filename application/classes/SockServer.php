@@ -87,4 +87,11 @@ class SockServer implements MessageComponentInterface {
 
         $loop->run();
     }
+
+
+    private function notifyAll($data) {
+        foreach ($this->clients as $current) {
+            $current->send($data);
+        }
+    }
 }
