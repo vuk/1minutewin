@@ -54,11 +54,6 @@ class SockServer implements MessageComponentInterface {
 
     private function initChildProcesses () {
 
-        $this->loop->addTimer(0.001, function($timer) {
-            echo "Socket server running in loop";
-            $this->server->run();
-        });
-
         // START RUNNER SERVICE
         $runner = new Process('php index.php socket/rnnr start');
 
@@ -94,6 +89,11 @@ class SockServer implements MessageComponentInterface {
             });
         });
         // END START BIDDER SERVICE
+
+        $this->loop->addTimer(0.001, function($timer) {
+            echo "Socket server running in loop";
+            $this->server->run();
+        });
 
         $this->loop->run();
     }
