@@ -21,7 +21,8 @@ class Srvr extends CI_Controller {
             );
 
             $loop->addTimer(0.001, function($timer) use ($server) {
-                $server->run($timer->getLoop());
+                echo "Socket server running in loop";
+                $server->run();
             });
 
         } catch (\Exception $e) {
