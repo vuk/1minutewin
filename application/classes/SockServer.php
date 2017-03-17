@@ -84,8 +84,6 @@ class SockServer implements MessageComponentInterface {
             });
         });
         // END START BIDDER SERVICE
-
-        $this->loop->run();
     }
 
 

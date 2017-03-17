@@ -25,6 +25,8 @@ class Srvr extends CI_Controller {
                 $server->run();
             });
 
+            $loop->run();
+
         } catch (\Exception $e) {
             var_dump($e->getMessage());
         }
