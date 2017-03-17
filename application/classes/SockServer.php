@@ -7,10 +7,15 @@ use React\ChildProcess\Process;
 class SockServer implements MessageComponentInterface {
     protected $clients;
     protected $loop;
+    protected $server;
 
     public function __construct(React\EventLoop\StreamSelectLoop $loop) {
         $this->loop = $loop;
         $this->clients = new \SplObjectStorage;
+    }
+
+    public function setServer ($server) {
+        $this->server = $server;
         $this->initChildProcesses();
     }
 
@@ -48,6 +53,11 @@ class SockServer implements MessageComponentInterface {
     }
 
     private function initChildProcesses () {
+
+        $this->loop->addTimer(0.001, function($timer) {
+            echo "Socket server running in loop";
+            $this->server->run();
+        });
 
         // START RUNNER SERVICE
         $runner = new Process('php index.php socket/rnnr start');
