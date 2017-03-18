@@ -53,6 +53,9 @@ class Rnnr extends CI_Controller {
                 unset($this->currentOrder->userObject);
                 $this->currentOrder->save();
                 $this->currentOrder = null;
+                echo json_encode([
+                    'order' => 'clear'
+                ]);
             }
         }
     }
