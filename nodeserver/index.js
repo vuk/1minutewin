@@ -2,9 +2,11 @@
 (function () {
     var runnerModule = require('./lib/runner');
     var bidderModule = require('./lib/bidder');
+    var socketModule = require('./lib/socket');
 
     var runner = runnerModule.start();
     var bidder = bidderModule.start();
+    var socket = socketModule.start();
 
     runner.stdout.on('data', function (data) {
         console.log('stdout: ' + data);

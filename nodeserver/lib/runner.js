@@ -9,6 +9,9 @@
             return runner = spawn('php', ['./index.php', 'socket/rnnr', 'start'], {
                 cwd: '../'
             });
+        },
+        stop: function () {
+            runner.kill();
         }
     };
 

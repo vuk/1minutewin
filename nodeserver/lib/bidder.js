@@ -9,6 +9,9 @@
             return bidder = spawn('php', ['./index.php', 'socket/bidder', 'start'], {
                 cwd: '../'
             });
+        },
+        stop: function () {
+            bidder.kill();
         }
     };
 
