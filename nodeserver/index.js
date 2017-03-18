@@ -41,7 +41,7 @@
         socketIn.emit('order', currentOrder);
     });
 
-    socket.on('bid', function (payload, data) {
+    socket.on('newbid', function (payload) {
         console.log(payload);
 
         http.get('http://1minutewin.com/home/bid/' + payload.user_id + '/' + payload.order_id + '/' + payload.amount, function (res) {

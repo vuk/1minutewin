@@ -22,10 +22,10 @@
             jQuery('#')
         },
         sendBid: function () {
-            this.conn.emit('bid', {
-                'user_id': '1',
-                'order_id': '1',
-                'amount': '1'
+            this.conn.emit('newbid', {
+                'user_id': '2',
+                'order_id': '157',
+                'amount': '12'
             })
         },
         updateScene: function (duration, durationLeft) {
