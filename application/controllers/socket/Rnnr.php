@@ -35,10 +35,9 @@ class Rnnr extends CI_Controller {
                 $product->stock -= 1;
                 $product->save();
                 $this->currentOrder = $order;
-                $message = $order;
-                $message->productObject = $order->product;
-                $message->userObject = $order->user;
-                echo json_encode($message);
+                $order->product;
+                $order->user;
+                echo json_encode($order);
             } catch (\Exception $e) {
                 $e->getMessage();
             }
