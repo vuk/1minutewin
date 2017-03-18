@@ -14,11 +14,11 @@ class Order extends Eloquent {
 
     public function product()
     {
-        return $this->belongsTo('Product', 'product_id');
+        return $this->belongsTo('Product');
     }
 
     public function user()
     {
-        return $this->belongsTo('User', 'user_id', 'id');
+        return $this->belongsTo('User');
     }
 }
