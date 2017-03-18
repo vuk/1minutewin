@@ -22,8 +22,7 @@
             jQuery('#')
         },
         sendBid: function () {
-            this.conn.send({
-                'type': 'bid',
+            this.conn.emit('bid', {
                 'payload': {
                     'user_id': '1',
                     'value': '1'

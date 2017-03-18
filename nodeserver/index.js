@@ -38,7 +38,10 @@
 
     socket.on('connection', function(socketIn) {
         socketIn.emit('order', currentOrder);
-        console.log('user connected ' + socketIn);
+    });
+
+    socket.on('bid', function (event, data) {
+
     });
 
 })();
