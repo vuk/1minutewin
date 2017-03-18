@@ -36,4 +36,9 @@
         console.log('[INFO] ' + code);
     });
 
+    socket.on('connection', function(socketIn) {
+        socketIn.send(currentOrder);
+        console.log('user connected');
+    });
+
 })();
