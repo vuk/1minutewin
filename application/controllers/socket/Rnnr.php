@@ -49,6 +49,8 @@ class Rnnr extends CI_Controller {
         if ($this->currentOrder !== null) {
             if (strtotime($this->currentOrder->ending_at) < strtotime('now')) {
                 $this->currentOrder->ended = 1;
+                unset($this->currentOrder->productObject);
+                unset($this->currentOrder->userObject);
                 $this->currentOrder->save();
                 $this->currentOrder = null;
             }
