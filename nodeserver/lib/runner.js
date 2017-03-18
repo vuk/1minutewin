@@ -12,16 +12,4 @@
         }
     };
 
-    runner.stdout.on('data', function (data) {
-        console.log('stdout: ' + data);
-    });
-
-    runner.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
-    });
-
-    runner.on('close', function (code) {
-        console.log('child process exited with code ' + code);
-    });
-
 })();
