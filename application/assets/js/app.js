@@ -10,6 +10,10 @@
             this.conn.on('connect', function(){
                 console.log(self.conn.id); // 'G5p5...'
             });
+            this.conn.on('order', function (event, content) {
+                console.log('event: ', event);
+                console.log('content: ', content);
+            })
         },
         newBid: function (message) {
             this.durationUpdate = this.totalDuration;
