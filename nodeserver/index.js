@@ -14,7 +14,7 @@
     runner.stdout.on('data', function (data) {
         console.info('[INFO] New order: ' + data);
         currentOrder = JSON.parse(data);
-        socket.emit('order', currentOrder);
+        socket.emit('order', {message: 'new order', order: currentOrder});
     });
 
     runner.stderr.on('data', function (data) {

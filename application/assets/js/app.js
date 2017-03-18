@@ -18,12 +18,11 @@
             this.durationUpdate = this.totalDuration;
             jQuery('#winning').html(message.payload.winning);
             jQuery('#amount').html(message.payload.currentAmount);
-            jQuery('#')
         },
         sendBid: function () {
             this.conn.emit('newbid', {
                 'user_id': '2',
-                'order_id': '184',
+                'order_id': '187',
                 'amount': '12'
             })
         },
