@@ -1,16 +1,18 @@
 'use strict';
-const spawn = require('child_process').spawn;
+(function () {
+    const spawn = require('child_process').spawn;
 
-const runner = spawn('php ../index.php socket/rnnr start');
+    const runner = spawn('php -v');
 
-runner.stdout.on('data', function (data) {
-    console.log('stdout: ' + data);
-});
+    runner.stdout.on('data', function (data) {
+        console.log('stdout: ' + data);
+    });
 
-runner.stderr.on('data', function (data) {
-    console.log('stderr: ' + data);
-});
+    runner.stderr.on('data', function (data) {
+        console.log('stderr: ' + data);
+    });
 
-runner.on('close', function (code) {
-    console.log('child process exited with code ${code}');
-});
+    runner.on('close', function (code) {
+        console.log('child process exited with code ${code}');
+    });
+})();
