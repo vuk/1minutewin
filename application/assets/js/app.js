@@ -23,10 +23,9 @@
         },
         sendBid: function () {
             this.conn.emit('bid', {
-                'payload': {
-                    'user_id': '1',
-                    'value': '1'
-                }
+                'user_id': '1',
+                'order_id': '1',
+                'amount': '1'
             })
         },
         updateScene: function (duration, durationLeft) {

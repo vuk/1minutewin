@@ -3,6 +3,7 @@
     var runnerModule = require('./lib/runner');
     var bidderModule = require('./lib/bidder');
     var socketModule = require('./lib/socket');
+    var http = require('http');
 
     var runner = runnerModule.start();
     var bidder = bidderModule.start();
@@ -36,12 +37,27 @@
         console.log('[INFO] ' + code);
     });
 
-    socket.on('connection', function(socketIn) {
+    socket.on('connection', function (socketIn) {
         socketIn.emit('order', currentOrder);
     });
 
-    socket.on('bid', function (event, data) {
+    socket.on('bid', function (payload, data) {
+        console.log(payload);
 
+        http.get('http://1minutewin.com/home/bid/' + payload.user_id + '/' + payload.order_id + '/' + payload.amount, function (res) {
+            var body = ''; // Will contain the final response
+            res.on('data', function (data) {
+                body += data;
+            });
+            res.on('end', function () {
+                var parsed = JSON.parse(body);
+                socket.emit('order', parsed);
+                console.log(parsed);
+            });
+        })
+        .on('error', function (e) {
+            console.log("Got error: " + e.message);
+        });
     });
 
 })();
