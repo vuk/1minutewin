@@ -10,7 +10,9 @@
             });
 
             // Socket.io server listens to our app
-            return require('socket.io').listen(app);
+            var io = require('socket.io').listen(app);
+            app.listen(8080);
+            return io;
         }
     };
 })();
