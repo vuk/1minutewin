@@ -1,20 +1,9 @@
 'use strict';
 (function () {
-    const spawn = require('child_process').spawn;
+    var runnerModule = require('./lib/runner');
+    var bidderModule = require('./lib/bidder');
 
-    const runner = spawn('php', ['./index.php', 'socket/rnnr', 'start'], {
-        cwd: '../'
-    });
+    var runner = runnerModule.start();
+    var bidder = bidderModule.start();
 
-    runner.stdout.on('data', function (data) {
-        console.log('stdout: ' + data);
-    });
-
-    runner.stderr.on('data', function (data) {
-        console.log('stderr: ' + data);
-    });
-
-    runner.on('close', function (code) {
-        console.log('child process exited with code ' + code);
-    });
 })();
