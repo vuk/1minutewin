@@ -2,27 +2,13 @@
     $(document).foundation();
 
     MinuteWin = {
-        conn: new WebSocket('ws://54.89.141.77:8080'),
+        conn: io('http://54.89.141.77:8080/'),
         durationUpdate: 0,
         totalDuration: 0,
         initialize: function (selector) {
-            this.conn.onopen = function(e) {
-                console.log("Connection established!");
-            };
-
-            this.conn.onmessage = function(e) {
-                console.log(e.data);
-            };
-
-            this.conn.onclose = function (e) {
-                console.log(e);
-                console.log('closed');
-            };
-
-            this.conn.onerror = function (e) {
-                console.log(e);
-                console.log('error');
-            };
+            this.conn.on('connect', function(){
+                console.log(this.conn.id); // 'G5p5...'
+            });
         },
         newBid: function (message) {
             this.durationUpdate = this.totalDuration;
