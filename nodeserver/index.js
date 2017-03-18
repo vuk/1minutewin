@@ -13,6 +13,6 @@
     });
 
     runner.on('close', function (code) {
-        console.log('child process exited with code ${code}');
+        console.log('child process exited with code ' + code);
     });
 })();
