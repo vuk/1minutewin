@@ -23,7 +23,7 @@
         sendBid: function () {
             this.conn.emit('newbid', {
                 'user_id': '2',
-                'order_id': '177',
+                'order_id': '184',
                 'amount': '12'
             })
         },

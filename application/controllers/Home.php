@@ -42,7 +42,7 @@ class Home extends CI_Controller {
         try {
             $user = User::findOrFail($user_id);
             $order = Order::findOrFail($order_id);
-            if ($amount > $order->winning_price && strtotime($order->ending_at) > strtotime('now')) {
+            if (intval($amount) > intval($order->winning_price) && $order->ended == 0) {
                 $order->user_id = $user->id;
                 $order->winning_price = $amount;
                 $order->bids ++;
@@ -51,8 +51,7 @@ class Home extends CI_Controller {
                 $order->user;
                 header('Content-Type: application/json');
                 echo json_encode([
-                    'error' => 14001,
-                    'message' => 'Bid wasn\'t accepted',
+                    'message' => 'Bid accepted',
                     'order' => $order
                 ]);
             } else {
