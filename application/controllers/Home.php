@@ -38,6 +38,36 @@ class Home extends CI_Controller {
         }
     }
 
+    public function bid ($user_id, $order_id, $amount) {
+        try {
+            $user = User::findOrFail($user_id);
+            $order = Order::findOrFail($order_id);
+            if ($amount > $order->winning_price && strtotime($order->ending_at) > strtotime('now')) {
+                $order->user_id = $user->id;
+                $order->winning_price = $amount;
+                $order->bids ++;
+                $order->save();
+                $order->product;
+                $order->user;
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'error' => 14001,
+                    'message' => 'Bid wasn\'t accepted',
+                    'order' => $order
+                ]);
+            } else {
+                throw new \Exception('Price offered was lower than current price or time expired');
+            }
+        } catch (\Exception $e) {
+            header('Content-Type: application/json');
+            echo json_encode([
+                'error' => 14001,
+                'message' => 'Bid wasn\'t accepted',
+                'exception' => $e->getMessage()
+            ]);
+        }
+    }
+
     public function not_found ()
     {
         $data = [
@@ -68,35 +98,6 @@ class Home extends CI_Controller {
             $this->load->view('footer', $data);
         } catch (\Exception $e) {
             $this->not_found();
-        }
-    }
-
-    public function bid ($user_id, $order_id, $amount) {
-        try {
-            $user = User::findOrFail($user_id);
-            $order = Order::findOrFail($order_id);
-            if ($amount > $order->winning_price) {
-                $order->user_id = $user->id;
-                $order->winning_price = $amount;
-                $order->save();
-                $order->product;
-                $order->user;
-                header('Content-Type: application/json');
-                echo json_encode([
-                    'error' => 14001,
-                    'message' => 'Bid wasn\'t accepted',
-                    'order' => $order
-                ]);
-            } else {
-                throw new \Exception('Price offered was lower than current price');
-            }
-        } catch (\Exception $e) {
-            header('Content-Type: application/json');
-            echo json_encode([
-                'error' => 14001,
-                'message' => 'Bid wasn\'t accepted',
-                'exception' => $e->getMessage()
-            ]);
         }
     }
 }
