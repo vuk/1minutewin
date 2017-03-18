@@ -39,9 +39,10 @@
 
     socket.on('connection', function (socketIn) {
         socketIn.emit('order', currentOrder);
+        socketIn.on('newbid', newbid);
     });
 
-    socket.on('newbid', function (payload) {
+    function newbid (payload) {
         console.log(payload);
 
         http.get('http://1minutewin.com/home/bid/' + payload.user_id + '/' + payload.order_id + '/' + payload.amount, function (res) {
@@ -58,6 +59,6 @@
         .on('error', function (e) {
             console.log("Got error: " + e.message);
         });
-    });
+    }
 
 })();

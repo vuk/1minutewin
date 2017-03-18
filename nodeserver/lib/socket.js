@@ -1,11 +1,12 @@
 'use strict';
 (function () {
-    var http = require('http');
+    var server = require('http').createServer();
 
     module.exports = {
         start: function () {
             // Socket.io server listens to our app
-            var io = require('socket.io').listen(8080);
+            var io = require('socket.io')(server);
+            server.listen(8080);
             return io;
         }
     };
