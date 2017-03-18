@@ -37,7 +37,7 @@
     });
 
     socket.on('connection', function(socketIn) {
-        socketIn.send(currentOrder);
+        socketIn.emit('order', currentOrder);
         console.log('user connected ' + socketIn);
     });
 
