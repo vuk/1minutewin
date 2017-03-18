@@ -6,8 +6,9 @@
         durationUpdate: 0,
         totalDuration: 0,
         initialize: function (selector) {
+            var self = this;
             this.conn.on('connect', function(){
-                console.log(this.conn.id); // 'G5p5...'
+                console.log(self.conn.id); // 'G5p5...'
             });
         },
         newBid: function (message) {
