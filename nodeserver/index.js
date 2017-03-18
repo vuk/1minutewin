@@ -38,7 +38,7 @@
     });
 
     socket.on('connection', function (socketIn) {
-        socketIn.emit('order', currentOrder);
+        socketIn.emit('order', {message: 'existing order', order: currentOrder});
         socketIn.on('newbid', newbid);
     });
 
