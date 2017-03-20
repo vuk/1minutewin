@@ -70,15 +70,17 @@
             });
             res.on('end', function () {
                 var parsed = JSON.parse(body);
-                var t1 = new Date(parsed.order.created_at);
-                var t2 = new Date(parsed.order.ending_at);
-                var t3 = new Date();
-                t3.setHours(t3.getHours() - 7);
-                parsed.order.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
-                parsed.order.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
-                socket.emit('order', parsed);
-                currentOrder = parsed.order;
-                console.log(parsed);
+                if (parsed.message === 'Bid accepted') {
+                    var t1 = new Date(parsed.order.created_at);
+                    var t2 = new Date(parsed.order.ending_at);
+                    var t3 = new Date();
+                    t3.setHours(t3.getHours() - 7);
+                    parsed.order.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
+                    parsed.order.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
+                    socket.emit('order', parsed);
+                    currentOrder = parsed.order;
+                    console.log(parsed);
+                }
             });
         })
         .on('error', function (e) {
