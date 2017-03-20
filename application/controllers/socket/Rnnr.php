@@ -37,8 +37,8 @@ class Rnnr extends CI_Controller {
                 $this->currentOrder = $order;
                 $order->product;
                 $order->user;
-                $order->duration = strtotime($order->ending_at) - strtotime($order->created_at);
-                $order->durationLeft = strtotime($order->ending_at) - strtotime('now');
+                $order->duration = strtotime($order->ending_at) - strtotime($order->created_at) * 1000;
+                $order->durationLeft = strtotime($order->ending_at) - strtotime('now') * 1000;
                 echo json_encode($order);
             } catch (\Exception $e) {
                 $e->getMessage();
