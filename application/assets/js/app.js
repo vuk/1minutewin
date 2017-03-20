@@ -41,6 +41,11 @@
             $('.discount').html('');
         },
         sendBid: function () {
+            console.log({
+                'user_id': $('#user_id').val(),
+                'order_id': $('#order_id').val(),
+                'amount': $('#order_amount').val()
+            });
             this.conn.emit('newbid', {
                 'user_id': $('#user_id').val(),
                 'order_id': $('#order_id').val(),

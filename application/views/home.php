@@ -6,7 +6,7 @@
                     <div class="product-content">
                         <a href="#" data-toggle="animatedModal10">
                             <div class="image-outer">
-                                <input type="hidden" name="user_id" value="<?= $this->session->userdata('id') ?>"/>
+                                <input type="hidden" name="user_id" value="<?= $this->session->id ?>" id="user_id"/>
                                 <input type="hidden" name="order_id" value="" id="order_id"/>
                                 <input type="hidden" name="order_amount" value="" id="order_amount"/>
                                 <img src="<?= base_url(json_decode($product->pictures)[0]) ?>" alt="">
