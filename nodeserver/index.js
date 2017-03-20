@@ -50,10 +50,9 @@
             currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
             currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
             socketIn.emit('order', {message: 'existing order', order: currentOrder});
+            socketIn.on('newbid', newbid);
         }
     });
-
-    socket.on('newbid', newbid);
 
     function newbid (payload) {
         console.log(payload);
