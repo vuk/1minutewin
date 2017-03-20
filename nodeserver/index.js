@@ -44,7 +44,7 @@
     socket.on('connection', function (socketIn) {
         var t1 = dateformatting(currentOrder.created_at);
         var t2 = dateformatting(currentOrder.ending_at);
-        var t3 = Date.now();
+        var t3 = new Date();
         t3.setHours(t3.getHours() - 7);
         currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
         currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
