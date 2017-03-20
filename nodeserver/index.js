@@ -48,10 +48,10 @@
         t3.setHours(t3.getHours() - 7);
         currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
         currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
-        console.log(t1.toUTCString(), t2.toUTCString(), new Date().toUTCString());
         socketIn.emit('order', {message: 'existing order', order: currentOrder});
-        socketIn.on('newbid', newbid);
     });
+
+    socket.on('newbid', newbid);
 
     function newbid (payload) {
         console.log(payload);

@@ -6,6 +6,9 @@
                     <div class="product-content">
                         <a href="#" data-toggle="animatedModal10">
                             <div class="image-outer">
+                                <input type="hidden" name="user_id" value="<?= $this->session->userdata('id') ?>"/>
+                                <input type="hidden" name="order_id" value="" id="order_id"/>
+                                <input type="hidden" name="order_amount" value="" id="order_amount"/>
                                 <img src="<?= base_url(json_decode($product->pictures)[0]) ?>" alt="">
                             </div>
                             <div class="content-outer">
@@ -29,7 +32,7 @@
                                         </div>
                                     </div>
                                     <div class="buy-button">
-                                        <a href="#buy" class="success button expanded">
+                                        <a href="#buy" class="success button expanded buy_button">
                                             <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount" class="bid_for"><?= $product->initial_price ?></span></span>
                                             <span><small class="shipping">Shipping <?= $settings->currency_symbol ?><?= $product->shipping_price ?></small></span>
                                             <span class="clearfix">
@@ -87,7 +90,7 @@
                             </div>
                         </div>
                         <div class="buy-button">
-                            <a href="#buy" class="success button expanded">
+                            <a href="#buy" class="success button expanded buy_button">
                                 <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount" class="bid_for"><?= $product->initial_price ?></span></span>
                                 <span><small class="shipping">Shipping <?= $settings->currency_symbol ?><?= $product->shipping_price ?></small></span>
                                 <span class="clearfix">

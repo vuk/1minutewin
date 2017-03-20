@@ -20,8 +20,10 @@
                 this.clearOrder();
             } else {
                 $('.product_title').html(object.order.product.product_title);
+                $('#order_id').val(object.order.id);
                 $('.bid_count').html(object.order.bids);
-                $('.bid_for').html(object.order.winning_price);
+                $('.bid_for').html(Math.floor(object.order.winning_price + object.order.winning_price / 10));
+                $('#order_amount').val(Math.floor(object.order.winning_price + object.order.winning_price / 10));
                 $('.image-outer img').attr('src', JSON.parse(object.order.product.pictures)[0]);
                 $('.shipping').html(object.order.product.shipping + " " + object.order.product.shipping_price);
                 $('.discount').html((100 - object.order.winning_price / object.order.product.regular_price * 100) + "% OFF");
@@ -30,22 +32,19 @@
         },
         clearOrder: function () {
             $('.product_title').html('');
+            $('#order_id').val('');
+            $('#order_amount').val('');
             $('.bid_count').html('');
             $('.bid_for').html('');
             $('.image-outer img').attr('src', '');
             $('.shipping').html('');
             $('.discount').html('');
         },
-        newBid: function (message) {
-            this.durationUpdate = this.totalDuration;
-            jQuery('#winning').html(message.payload.winning);
-            jQuery('#amount').html(message.payload.currentAmount);
-        },
         sendBid: function () {
             this.conn.emit('newbid', {
-                'user_id': '2',
-                'order_id': '187',
-                'amount': '12'
+                'user_id': $('#user_id').val(),
+                'order_id': $('#order_id').val(),
+                'amount': $('#order_amount').val()
             })
         },
         updateScene: function (duration, durationLeft) {
@@ -78,5 +77,9 @@
         MinuteWin.initialize('.product-wrapper');
         //MinuteWin.updateScene(60000);
         MinuteWin.selectImage();
+    });
+
+    $('.buy_button').click(function () {
+       MinuteWin.sendBid();
     });
 })();
