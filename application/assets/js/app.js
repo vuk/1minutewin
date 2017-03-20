@@ -16,18 +16,22 @@
             });
         },
         handleOrder: function (object) {
-            if (object.order.order === 'clear') {
-                this.clearOrder();
-            } else {
-                $('.product_title').html(object.order.product.product_title);
-                $('#order_id').val(object.order.id);
-                $('.bid_count').html(object.order.bids);
-                $('.bid_for').html(Math.floor(object.order.winning_price + object.order.winning_price / 10));
-                $('#order_amount').val(Math.floor(object.order.winning_price + object.order.winning_price / 10));
-                $('.image-outer img').attr('src', JSON.parse(object.order.product.pictures)[0]);
-                $('.shipping').html(object.order.product.shipping + " " + object.order.product.shipping_price);
-                $('.discount').html((100 - object.order.winning_price / object.order.product.regular_price * 100) + "% OFF");
-                this.updateScene(object.order.duration, object.order.durationLeft);
+            if (object.order) {
+                if (object.order.order === 'clear') {
+                    this.clearOrder();
+                } else {
+                    $('.product_title').html(object.order.product.product_title);
+                    $('#order_id').val(object.order.id);
+                    $('.bid_count').html(object.order.bids);
+                    $('.bid_for').html(Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
+                    $('#order_amount').val(Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
+                    $('.image-outer img').attr('src', JSON.parse(object.order.product.pictures)[0]);
+                    $('.shipping').html(object.order.product.shipping + " " + object.order.product.shipping_price);
+                    $('.discount').html(
+                        (Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100) > 0 ?
+                            Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100)  + "% OFF": ''));
+                    this.updateScene(object.order.duration, object.order.durationLeft);
+                }
             }
         },
         clearOrder: function () {
@@ -41,16 +45,13 @@
             $('.discount').html('');
         },
         sendBid: function () {
-            console.log({
-                'user_id': $('#user_id').val(),
-                'order_id': $('#order_id').val(),
-                'amount': $('#order_amount').val()
-            });
-            this.conn.emit('newbid', {
-                'user_id': $('#user_id').val(),
-                'order_id': $('#order_id').val(),
-                'amount': $('#order_amount').val()
-            })
+            if (parseInt($('#user_id').val()) > 0) {
+                this.conn.emit('newbid', {
+                    'user_id': $('#user_id').val(),
+                    'order_id': $('#order_id').val(),
+                    'amount': $('#order_amount').val()
+                });
+            }
         },
         updateScene: function (duration, durationLeft) {
             this.durationUpdate = durationLeft || duration;
@@ -84,7 +85,8 @@
         MinuteWin.selectImage();
     });
 
-    $('.buy_button').click(function () {
-       MinuteWin.sendBid();
+    $('.buy_button').click(function (e) {
+        e.preventDefault();
+        MinuteWin.sendBid();
     });
 })();

@@ -65,6 +65,7 @@
             res.on('end', function () {
                 var parsed = JSON.parse(body);
                 socket.emit('order', parsed);
+                currentOrder = parsed;
                 console.log(parsed);
             });
         })

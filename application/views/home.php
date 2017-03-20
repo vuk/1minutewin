@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="buy-button">
                                         <a href="#buy" class="success button expanded buy_button">
-                                            <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount" class="bid_for"><?= $product->initial_price ?></span></span>
+                                            <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount" class="bid_for"></span></span>
                                             <span><small class="shipping">Shipping <?= $settings->currency_symbol ?><?= $product->shipping_price ?></small></span>
                                             <span class="clearfix">
                                                 </span>
