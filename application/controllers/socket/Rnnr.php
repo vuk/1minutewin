@@ -37,6 +37,8 @@ class Rnnr extends CI_Controller {
                 $this->currentOrder = $order;
                 $order->product;
                 $order->user;
+                $order->duration = strtotime($order->ending_at) - strtotime($order->created_at);
+                $order->durationLeft = strtotime($order->ending_at) - strtotime('now');
                 echo json_encode($order);
             } catch (\Exception $e) {
                 $e->getMessage();
@@ -50,6 +52,8 @@ class Rnnr extends CI_Controller {
                 $this->currentOrder->ended = 1;
                 unset($this->currentOrder->productObject);
                 unset($this->currentOrder->userObject);
+                unset($this->currentOrder->duration);
+                unset($this->currentOrder->durationLeft);
                 $this->currentOrder->save();
                 $this->currentOrder = null;
                 echo json_encode([

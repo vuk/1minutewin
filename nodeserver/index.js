@@ -19,10 +19,12 @@
 
     runner.stderr.on('data', function (data) {
         console.error('[ERROR] Runner failed: ' + data);
+        runner = runnerModule.start();
     });
 
     runner.on('close', function (code) {
         console.info('[INFO] Runner process stopped with code: ' + code);
+        runner = runnerModule.start();
     });
 
     bidder.stdout.on('data', function (data) {
@@ -31,10 +33,12 @@
 
     bidder.stderr.on('data', function (data) {
         console.error('[ERROR] Bidder process failed: ' + data);
+        bidder = bidderModule.start();
     });
 
     bidder.on('close', function (code) {
         console.log('[INFO] ' + code);
+        bidder = bidderModule.start();
     });
 
     socket.on('connection', function (socketIn) {
