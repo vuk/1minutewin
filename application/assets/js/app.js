@@ -63,6 +63,7 @@
             }
         },
         updateScene: function (duration, durationLeft) {
+            console.log(duration, durationLeft);
             this.durationUpdate = durationLeft || duration;
             this.totalDuration = duration;
             var elem = jQuery('.progress-inner');

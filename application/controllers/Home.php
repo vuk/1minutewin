@@ -49,7 +49,7 @@ class Home extends CI_Controller {
                 $order->winning_price = $amount;
                 $order->bids ++;
                 $order->ending_at = date('Y-m-d H:i:s',
-                    strtotime('now')
+                    strtotime('-7 hours')
                     + intval($this->settings->initial_duration)
                     + intval($this->settings->going_once)
                     + intval($this->settings->going_twice)
