@@ -42,6 +42,11 @@
     });
 
     socket.on('connection', function (socketIn) {
+        var t1 = Math.floor(new Date(currentOrder.created_at));
+        var t2 = Math.floor(new Date(currentOrder.ending_at));
+        var t3 = Math.floor(Date.now());
+        currentOrder.duration = t2.getTime() - t1.getTime();
+        currentOrder.durationLeft = t2.getTime() - t3.getTime();
         socketIn.emit('order', {message: 'existing order', order: currentOrder});
         socketIn.on('newbid', newbid);
     });
