@@ -25,6 +25,7 @@ class Rnnr extends CI_Controller {
                     $order->user;
                     $order->duration = (strtotime($order->ending_at) - strtotime($order->created_at)) * 1000;
                     $order->durationLeft = (strtotime($order->ending_at) - strtotime('now')) * 1000;
+                    $this->currentOrder = $order;
                 } else {
                     $product = Product::where('published', '=', 1)->where('stock', '>', 0)->firstOrFail();
                     $order = new Order;
