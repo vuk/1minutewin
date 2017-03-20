@@ -17,9 +17,9 @@
                                     <div class="live-data">
                                         <div id="phase"><span>Accepting bids</span></div>
                                         <?php if($order->bids > 0): ?>
-                                            <div id="leader"><span><span id="winning">John</span> <span id="winning_append">is winning</span></span></div>
+                                            <div id="leader"><span><span class="user_winning">John</span> <span class="winning_append">is winning</span></span></div>
                                         <?php else: ?>
-                                            <div id="leader"><span><span id="winning"></span> <span id="winning_append">Start bidding</span></span></div>
+                                            <div id="leader"><span><span class="user_winning"></span> <span class="winning_append">Start bidding</span></span></div>
                                         <?php endif; ?>
                                         <div class="row keep-in">
                                             <div class="columns large-6 small-6">
@@ -75,9 +75,9 @@
                         <div class="live-data">
                             <div id="phase"><span>Accepting bids</span></div>
                             <?php if($order->bids > 0): ?>
-                                <div id="leader"><span><span id="winning">John</span> <span id="winning_append">is winning</span></span></div>
+                                <div id="leader"><span><span class="user_winning" >John</span> <span class="winning_append">is winning</span></span></div>
                             <?php else: ?>
-                                <div id="leader"><span><span id="winning"></span> <span id="winning_append">Start bidding</span></span></div>
+                                <div id="leader"><span><span id="winning"></span> <span class="winning_append">Start bidding</span></span></div>
                             <?php endif; ?>
                             <div class="row keep-in">
                                 <div class="columns large-6 small-6">

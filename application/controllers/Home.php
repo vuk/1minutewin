@@ -46,6 +46,12 @@ class Home extends CI_Controller {
                 $order->user_id = $user->id;
                 $order->winning_price = $amount;
                 $order->bids ++;
+                $order->ending_at = date('Y-m-d H:i:s',
+                    strtotime('now')
+                    + intval($this->settings->initial_duration)
+                    + intval($this->settings->going_once)
+                    + intval($this->settings->going_twice)
+                );
                 $order->save();
                 $order->product;
                 $order->user;

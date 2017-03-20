@@ -30,6 +30,13 @@
                     $('.discount').html(
                         (Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100) > 0 ?
                             Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100)  + "% OFF": ''));
+                    if (object.order.user && object.order.user.first_name) {
+                        $('.user_winning').html(object.order.user.first_name);
+                        $('.winning_append').html(' is winning');
+                    } else {
+                        $('.winning_append').html('Start bidding');
+                        $('.user_winning').html('');
+                    }
                     this.updateScene(object.order.duration, object.order.durationLeft);
                 }
             }
@@ -42,6 +49,8 @@
             $('.bid_for').html('');
             $('.image-outer img').attr('src', '');
             $('.shipping').html('');
+            $('.winning_append').html('Start bidding');
+            $('.user_winning').html('');
             $('.discount').html('');
         },
         sendBid: function () {
