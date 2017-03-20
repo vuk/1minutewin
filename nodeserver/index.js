@@ -44,9 +44,9 @@
     socket.on('connection', function (socketIn) {
         var t1 = new Date(currentOrder.created_at);
         var t2 = new Date(currentOrder.ending_at);
-        var t3 = Date.now();
+        var t3 = new Date();
         currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
-        currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3);
+        currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
         console.log(currentOrder.duration, currentOrder.durationLeft);
         socketIn.emit('order', {message: 'existing order', order: currentOrder});
         socketIn.on('newbid', newbid);
