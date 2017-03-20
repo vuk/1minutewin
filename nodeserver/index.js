@@ -43,8 +43,8 @@
 
     socket.on('connection', function (socketIn) {
         if (currentOrder) {
-            var t1 = dateformatting(currentOrder.created_at);
-            var t2 = dateformatting(currentOrder.ending_at);
+            var t1 = new Date(currentOrder.created_at);
+            var t2 = new Date(currentOrder.ending_at);
             var t3 = new Date();
             t3.setHours(t3.getHours() - 7);
             currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
