@@ -14,6 +14,12 @@
     runner.stdout.on('data', function (data) {
         console.info('[INFO] New order: ' + data);
         currentOrder = JSON.parse(data);
+        var t1 = new Date(currentOrder.created_at);
+        var t2 = new Date(currentOrder.ending_at);
+        var t3 = new Date();
+        t3.setHours(t3.getHours() - 7);
+        currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
+        currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
         socket.emit('order', {message: 'new order', order: currentOrder});
     });
 
@@ -72,21 +78,6 @@
         .on('error', function (e) {
             console.log("Got error: " + e.message);
         });
-    }
-
-    function dateformatting(mysql_string)
-    {
-        var t, result = null;
-
-        if( typeof mysql_string === 'string' )
-        {
-            t = mysql_string.split(/[- :]/);
-
-            //when t[3], t[4] and t[5] are missing they defaults to zero
-            result = new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
-        }
-
-        return result;
     }
 
 })();
