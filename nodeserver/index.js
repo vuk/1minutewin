@@ -47,7 +47,7 @@
         var t3 = Date.now();
         currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
         currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(Date.now());
-        console.log(currentOrder.duration, currentOrder.durationLeft);
+        console.log(t1.getTime(), t2.getTime(), t3);
         socketIn.emit('order', {message: 'existing order', order: currentOrder});
         socketIn.on('newbid', newbid);
     });
@@ -71,12 +71,19 @@
         });
     }
 
-    function dateformatting (date) {
-        // Split timestamp into [ Y, M, D, h, m, s ]
-        var t = date.split(/[- :]/);
+    function dateformatting(mysql_string)
+    {
+        var t, result = null;
 
-        // Apply each element to the Date function
-        return new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+        if( typeof mysql_string === 'string' )
+        {
+            t = mysql_string.split(/[- :]/);
+
+            //when t[3], t[4] and t[5] are missing they defaults to zero
+            result = new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);
+        }
+
+        return result;
     }
 
 })();
