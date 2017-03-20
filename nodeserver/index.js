@@ -14,7 +14,7 @@
     runner.stdout.on('data', function (data) {
         console.info('[INFO] New order: ' + data);
         currentOrder = JSON.parse(data);
-        var t1 = new Date(currentOrder.created_at);
+        var t1 = new Date(currentOrder.updated_at);
         var t2 = new Date(currentOrder.ending_at);
         var t3 = new Date();
         t3.setHours(t3.getHours() - 7);
@@ -49,7 +49,7 @@
 
     socket.on('connection', function (socketIn) {
         if (currentOrder) {
-            var t1 = new Date(currentOrder.created_at);
+            var t1 = new Date(currentOrder.updated_at);
             var t2 = new Date(currentOrder.ending_at);
             var t3 = new Date();
             t3.setHours(t3.getHours() - 7);
