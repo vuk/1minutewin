@@ -4,11 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 
     protected $pages;
+    protected $settings = null;
 
     public function __construct()
     {
         parent::__construct();
         $this->pages = Page::where('show_menu', '=', 1)->get();
+        $this->settings = json_decode(Setting::where('settings_key', 'LIKE', 'settings')->first()->value);
     }
 
     /**
