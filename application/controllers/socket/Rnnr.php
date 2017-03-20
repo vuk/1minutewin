@@ -19,26 +19,34 @@ class Rnnr extends CI_Controller {
     private function checkCurrentOrder () {
         if ($this->currentOrder === null) {
             try {
-                $product = Product::where('published', '=', 1)->where('stock', '>', 0)->firstOrFail();
-                $order = new Order;
-                $order->product_id = $product->id;
-                $order->user_id = 0;
-                $order->bids = 0;
-                $order->winning_price = $product->initial_price;
-                $order->ending_at = date('Y-m-d H:i:s',
-                    strtotime('now')
-                    + intval($this->settings->initial_duration)
-                    + intval($this->settings->going_once)
-                    + intval($this->settings->going_twice)
-                );
-                $order->save();
-                $product->stock -= 1;
-                $product->save();
-                $this->currentOrder = $order;
-                $order->product;
-                $order->user;
-                $order->duration = (strtotime($order->ending_at) - strtotime($order->created_at)) * 1000;
-                $order->durationLeft = (strtotime($order->ending_at) - strtotime('now')) * 1000;
+                $order = Order::where('ended', '=', 0)->where('ending_at', '>', date('Y-m-d H:i:s', strtotime('now')))->first();
+                if (isset($order->id)) {
+                    $order->product;
+                    $order->user;
+                    $order->duration = (strtotime($order->ending_at) - strtotime($order->created_at)) * 1000;
+                    $order->durationLeft = (strtotime($order->ending_at) - strtotime('now')) * 1000;
+                } else {
+                    $product = Product::where('published', '=', 1)->where('stock', '>', 0)->firstOrFail();
+                    $order = new Order;
+                    $order->product_id = $product->id;
+                    $order->user_id = 0;
+                    $order->bids = 0;
+                    $order->winning_price = $product->initial_price;
+                    $order->ending_at = date('Y-m-d H:i:s',
+                        strtotime('now')
+                        + intval($this->settings->initial_duration)
+                        + intval($this->settings->going_once)
+                        + intval($this->settings->going_twice)
+                    );
+                    $order->save();
+                    $product->stock -= 1;
+                    $product->save();
+                    $this->currentOrder = $order;
+                    $order->product;
+                    $order->user;
+                    $order->duration = (strtotime($order->ending_at) - strtotime($order->created_at)) * 1000;
+                    $order->durationLeft = (strtotime($order->ending_at) - strtotime('now')) * 1000;
+                }
                 echo json_encode($order);
             } catch (\Exception $e) {
                 $e->getMessage();
