@@ -26,15 +26,15 @@
                                                 <span><span class="bid_count"><?= $order->bids ?></span> Bids</span>
                                             </div>
                                             <div class="columns large-6 small-6 text-right">
-                                                <span id="old-price" class="old_price"><?= $settings->currency_symbol . $product->regular_price ?></span>
-                                                <span id="discount" class="discount"><?= 100 - ($order->winning_price / $product->regular_price * 100) ?>% OFF</span>
+                                                <span id="old-price" class="old_price"><?= $settings->currency_symbol ?></span>
+                                                <span id="discount" class="discount"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="buy-button">
                                         <a href="#buy" class="success button expanded buy_button">
                                             <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount" class="bid_for"></span></span>
-                                            <span><small class="shipping">Shipping <?= $settings->currency_symbol ?><?= $product->shipping_price ?></small></span>
+                                            <span><small class="shipping"></small></span>
                                             <span class="clearfix">
                                                 </span>
                                         </a>
@@ -54,7 +54,7 @@
 <div class="reveal large" id="animatedModal10" data-reveal data-close-on-click="true" data-animation-in="hinge-in-from-top" data-animation-out="hinge-out-from-top">
     <div class="row">
         <div class="columns large-12">
-            <h1 class="product_title"><?= $product->product_title ?></h1>
+            <h1 class="product_title">Loading...</h1>
             <div class="row">
                 <div class="columns large-8">
                     <div class="gallery-wrapper row">
@@ -77,22 +77,22 @@
                             <?php if($order->bids > 0): ?>
                                 <div id="leader"><span><span class="user_winning" >John</span> <span class="winning_append">is winning</span></span></div>
                             <?php else: ?>
-                                <div id="leader"><span><span id="winning"></span> <span class="winning_append">Start bidding</span></span></div>
+                                <div id="leader"><span><span class="user_winning"></span> <span class="winning_append">Start bidding</span></span></div>
                             <?php endif; ?>
                             <div class="row keep-in">
                                 <div class="columns large-6 small-6">
-                                    <span><span id="bids" class="bid_count"><?= $order->bids ?></span> Bids</span>
+                                    <span><span id="bids" class="bid_count"></span> Bids</span>
                                 </div>
                                 <div class="columns large-6 small-6 text-right">
-                                    <span class="old_price"><?= $settings->currency_symbol . $product->regular_price ?></span>
-                                    <span class="discount"><?= 100 - ($order->winning_price / $product->regular_price * 100) ?>% OFF</span>
+                                    <span class="old_price"><?= $settings->currency_symbol ?></span>
+                                    <span class="discount"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="buy-button">
                             <a href="#buy" class="success button expanded buy_button">
-                                <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount" class="bid_for"><?= $product->initial_price ?></span></span>
-                                <span><small class="shipping">Shipping <?= $settings->currency_symbol ?><?= $product->shipping_price ?></small></span>
+                                <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount" class="bid_for"></span></span>
+                                <span><small class="shipping"></small></span>
                                 <span class="clearfix">
                                                 </span>
                             </a>
@@ -100,7 +100,7 @@
                     </div>
                     <div class="description modal-content-inner">
                         <h4>Description:</h4>
-                        <p><?= $product->product_description ?></p>
+                        <span class="product_description"></span>
                     </div>
                 </div>
             </div>

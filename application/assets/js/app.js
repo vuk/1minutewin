@@ -27,6 +27,7 @@
                     $('#order_amount').val(Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
                     $('.image-outer img').attr('src', JSON.parse(object.order.product.pictures)[0]);
                     $('.shipping').html(object.order.product.shipping + " " + object.order.product.shipping_price);
+                    $('.product_description').html(object.order.product.product_description);
                     $('.discount').html(
                         (Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100) > 0 ?
                             Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100)  + "% OFF": ''));
@@ -52,6 +53,7 @@
             $('.winning_append').html('Start bidding');
             $('.user_winning').html('');
             $('.discount').html('');
+            $('.product_description').html('');
         },
         sendBid: function () {
             if (parseInt($('#user_id').val()) > 0) {
