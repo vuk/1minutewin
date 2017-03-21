@@ -66,8 +66,7 @@
 
     function newbid(payload) {
         console.log(payload);
-        payload = JSON.parse(payload);
-        if (parseInt(payload.user_id > 0) && parseInt(payload.order_id) > 0) {
+        if (parseInt(payload.user_id) > 0 && parseInt(payload.order_id) > 0) {
             console.log('if condition met');
             http.get('http://54.89.141.77/1minutewin/index.php/home/bid/' + payload.user_id + '/' + payload.order_id + '/' + payload.amount, function (res) {
                 var body = ''; // Will contain the final response
