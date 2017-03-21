@@ -106,6 +106,10 @@
                     jQuery(this).parent().addClass('active');
                 });
             }
+        },
+        heartBeat: function () {
+            $(window).on('focus', function() { console.log('I got focus') });
+            this.conn.emit('heartbeat', { 'ping': 1 });
         }
     };
 
@@ -113,6 +117,7 @@
         MinuteWin.initialize('.product-wrapper');
         //MinuteWin.updateScene(60000);
         MinuteWin.selectImage();
+        MinuteWin.heartBeat();
     });
 
     $('.buy_button').click(function (e) {

@@ -21,6 +21,9 @@
         currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
         currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
         socket.emit('order', {message: 'new order', order: currentOrder});
+        if (currentOrder.order === 'clear') {
+            currentOrder = null;
+        }
     });
 
     runner.stderr.on('data', function (data) {
@@ -57,6 +60,7 @@
             currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
             socketIn.emit('order', {message: 'existing order', order: currentOrder});
             socketIn.on('newbid', newbid);
+            socketIn.on('heartbeat', heartbeat);
         }
     });
 
@@ -86,6 +90,20 @@
                     console.log("Got error: " + e.message);
                 });
         }
+    }
+
+    function heartbeat(payload) {
+        console.log(payload);
+        if (currentOrder)
+        var t1 = new Date(parsed.order.updated_at);
+        var t2 = new Date(parsed.order.ending_at);
+        var t3 = new Date();
+        t3.setHours(t3.getHours() - 7);
+        parsed.order.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
+        parsed.order.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
+        socket.emit('order', parsed);
+        currentOrder = parsed.order;
+
     }
 
 })();
