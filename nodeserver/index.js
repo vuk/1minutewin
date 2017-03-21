@@ -53,6 +53,7 @@
             var t2 = new Date(currentOrder.ending_at);
             var t3 = new Date();
             console.log(t3.toUTCString());
+            console.log(t2.toUTCString());
             //t3.setHours(t3.getHours() - 7);
             currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
             currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
