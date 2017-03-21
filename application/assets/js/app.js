@@ -108,8 +108,9 @@
             }
         },
         heartBeat: function () {
+            var self = this;
             $(window).on('focus', function() {
-                this.conn.emit('heartbeat', { 'ping': 1 });
+                self.conn.emit('heartbeat', { 'ping': 1 });
             });
         }
     };
