@@ -17,7 +17,7 @@
         var t1 = new Date(currentOrder.updated_at);
         var t2 = new Date(currentOrder.ending_at);
         var t3 = new Date();
-        t3.setHours(t3.getHours() - 7);
+        //t3.setHours(t3.getHours() - 7);
         currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
         currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
         socket.emit('order', {message: 'new order', order: currentOrder});
@@ -77,6 +77,8 @@
                     var t2 = new Date(parsed.order.ending_at);
                     var t3 = new Date();
                     //t3.setHours(t3.getHours() - 7);
+                    console.log(t3.toUTCString());
+                    console.log(t2.toUTCString());
                     parsed.order.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
                     parsed.order.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
                     socket.emit('order', parsed);
