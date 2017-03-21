@@ -23,7 +23,7 @@ class Rnnr extends CI_Controller {
                 if (isset($order->id)) {
                     $order->product;
                     $order->user;
-                    $order->duration = (strtotime($order->ending_at) - strtotime($order->created_at)) * 1000;
+                    $order->duration = (strtotime($order->ending_at) - strtotime($order->updated_at)) * 1000;
                     $order->durationLeft = (strtotime($order->ending_at) - strtotime('now')) * 1000;
                     $this->currentOrder = $order;
                 } else {
@@ -45,7 +45,7 @@ class Rnnr extends CI_Controller {
                     $this->currentOrder = $order;
                     $order->product;
                     $order->user;
-                    $order->duration = (strtotime($order->ending_at) - strtotime($order->created_at)) * 1000;
+                    $order->duration = (strtotime($order->ending_at) - strtotime($order->updated_at)) * 1000;
                     $order->durationLeft = (strtotime($order->ending_at) - strtotime('now')) * 1000;
                 }
                 echo json_encode($order);
