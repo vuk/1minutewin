@@ -184,3 +184,11 @@ article.page h1 {
 .modal-content-inner.description {
     margin-top: 10px;
 }
+.loader-icon {
+    text-align: center;
+    margin: 2em 0 1em 0;
+    color: #333;
+}
+.active-image-wrapper, .image-outer {
+    text-align: center;
+}

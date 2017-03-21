@@ -2,7 +2,10 @@
     $(document).foundation();
 
     MinuteWin = {
+        baseURL: 'http://1minutewin.com/',
         conn: io('http://54.89.141.77:8080/'),
+        orderID: 0,
+        orderPrice: 0,
         durationUpdate: 0,
         totalDuration: 0,
         initialize: function (selector) {
@@ -25,8 +28,11 @@
                     $('.bid_count').html(object.order.bids);
                     $('.old_price').html(window.minuteSettings.currency_symbol + '' + object.order.product.regular_price);
                     $('.bid_for').html(window.minuteSettings.currency_symbol + '' + Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
+                    this.orderPrice = Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10);
+                    this.orderID = object.order.id;
                     $('#order_amount').val(Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
-                    $('.image-outer img').attr('src', JSON.parse(object.order.product.pictures)[0]);
+                    $('.image-outer img').attr('src', this.baseURL + JSON.parse(object.order.product.pictures)[0]);
+                    $('.loader-icon').hide();
                     $('.shipping').html(object.order.product.shipping + " " + window.minuteSettings.currency_symbol + '' +  object.order.product.shipping_price);
                     $('.product_description').html(object.order.product.product_description);
                     $('.discount').html(
@@ -48,6 +54,7 @@
             $('#order_id').val('');
             $('#order_amount').val('');
             $('.bid_count').html('');
+            $('.loader-icon').show();
             $('.old_price').html('');
             $('.bid_for').html('');
             $('.image-outer img').attr('src', '');
@@ -56,16 +63,22 @@
             $('.user_winning').html('');
             $('.discount').html('');
             $('.product_description').html('');
+            this.orderPrice = 0;
+            this.orderID = 0;
         },
         sendBid: function () {
-            console.log('Trying to send a bid! ' + parseInt($('#user_id').val()));
-            if (parseInt($('#user_id').val()) > 0) {
-                console.log('sending bid!');
-                this.conn.emit('newbid', {
-                    'user_id': $('#user_id').val(),
-                    'order_id': $('#order_id').val(),
-                    'amount': $('#order_amount').val()
-                });
+            console.log('Trying to send a bid! ' + parseInt(window.user_id));
+            if (parseInt(window.user_id) > 0) {
+                if (parseInt(this.orderID) > 0) {
+                    console.log('sending bid!');
+                    this.conn.emit('newbid', {
+                        'user_id': window.user_id,
+                        'order_id': this.orderID,
+                        'amount': this.orderPrice
+                    });
+                }
+            } else {
+                $('#animatedModal11').foundation('open');
             }
         },
         updateScene: function (duration, durationLeft) {

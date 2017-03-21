@@ -9,7 +9,8 @@
                                 <input type="hidden" name="user_id" value="<?= $this->session->id ?>" id="user_id"/>
                                 <input type="hidden" name="order_id" value="" id="order_id"/>
                                 <input type="hidden" name="order_amount" value="" id="order_amount"/>
-                                <img src="<?= base_url(json_decode($product->pictures)[0]) ?>" alt="">
+                                <i class="fa fa-refresh fa-spin fa-3x fa-fw loader-icon"></i>
+                                <img src="<?//= //base_url(json_decode($product->pictures)[0]) ?>" alt="">
                             </div>
                             <div class="content-outer">
                                 <div class="content-inner">
@@ -59,14 +60,15 @@
                 <div class="columns large-8">
                     <div class="gallery-wrapper row">
                         <div class="active-image-wrapper columns large-8 small-12">
-                            <img id="activeImage" src="<?= base_url(json_decode($product->pictures)[0]) ?>"/>
+                            <i class="fa fa-refresh fa-spin fa-3x fa-fw loader-icon"></i>
+                            <img id="activeImage" src="<?//= //base_url(json_decode($product->pictures)[0]) ?>"/>
                         </div>
-                        <div class="thumbs columns large-4 small-12">
-                            <?php foreach(json_decode($product->pictures) as $picture): ?>
+                        <div class="thumbs columns large-4 small-6 medium-6">
+                            <?php /*foreach(json_decode($product->pictures) as $picture): */?><!--
                                 <div class="thumb-wrapper">
-                                    <img class="thumb" data-full="<?= base_url($picture) ?>" src="<?= base_url('_thumb/'.$picture) ?>"/>
+                                    <img class="thumb" data-full="<?/*= base_url($picture) */?>" src="<?/*= base_url('_thumb/'.$picture) */?>"/>
                                 </div>
-                            <?php endforeach; ?>
+                            --><?php /*endforeach; */?>
                         </div>
                     </div>
                 </div>
@@ -110,6 +112,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
     <script>
-        window.minuteSettings = <?= json_encode($settings); ?>
+        window.minuteSettings = <?= json_encode($settings); ?>;
+        window.user_id = <?= intval($this->session->id) > 0 ? $this->session->id : 0 ?>;
     </script>
 </div>

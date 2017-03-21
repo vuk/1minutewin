@@ -65,7 +65,7 @@
     function newbid (payload) {
         console.log(payload);
 
-        http.get('http://1minutewin.com/home/bid/' + payload.user_id + '/' + payload.order_id + '/' + payload.amount, function (res) {
+        http.get('http://54.89.141.77/1minutewin/index.php/home/bid/' + payload.user_id + '/' + payload.order_id + '/' + payload.amount, function (res) {
             var body = ''; // Will contain the final response
             res.on('data', function (data) {
                 body += data;
