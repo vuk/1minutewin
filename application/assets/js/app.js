@@ -81,18 +81,19 @@
                 $('#animatedModal11').foundation('open');
             }
         },
-        updateScene: function (duration, durationLeft) {
+        updateScene: function (duration, durationLeft, fps) {
+            fps = fps || 60;
             console.log(duration, durationLeft);
             this.durationUpdate = durationLeft || duration;
             this.totalDuration = duration;
             var elem = jQuery('.progress-inner');
-            var id = setInterval(frame, 17);
+            var id = setInterval(frame, Math.ceil(1000/fps));
             var self = this;
             function frame() {
                 if (self.durationUpdate <= 0) {
                     clearInterval(id);
                 } else {
-                    self.durationUpdate = self.durationUpdate - 17;
+                    self.durationUpdate = self.durationUpdate - Math.ceil(1000/fps);
                     elem.height((self.durationUpdate / self.totalDuration * 100).toFixed(4) + '%');
                 }
             }

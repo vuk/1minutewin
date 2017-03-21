@@ -52,8 +52,6 @@
             var t1 = new Date(currentOrder.updated_at);
             var t2 = new Date(currentOrder.ending_at);
             var t3 = new Date();
-            console.log(t3.toUTCString());
-            console.log(t2.toUTCString());
             t3.setHours(t3.getHours() - 7);
             currentOrder.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
             currentOrder.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
@@ -62,34 +60,32 @@
         }
     });
 
-    function newbid (payload) {
+    function newbid(payload) {
         console.log(payload);
-
-        http.get('http://54.89.141.77/1minutewin/index.php/home/bid/' + payload.user_id + '/' + payload.order_id + '/' + payload.amount, function (res) {
-            var body = ''; // Will contain the final response
-            res.on('data', function (data) {
-                body += data;
-            });
-            res.on('end', function () {
-                var parsed = JSON.parse(body);
-                if (parsed.message === 'Bid accepted') {
-                    var t1 = new Date(parsed.order.updated_at);
-                    var t2 = new Date(parsed.order.ending_at);
-                    var t3 = new Date();
-                    t3.setHours(t3.getHours() - 7);
-                    console.log(t3.toUTCString());
-                    console.log(t2.toUTCString());
-                    parsed.order.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
-                    parsed.order.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
-                    socket.emit('order', parsed);
-                    currentOrder = parsed.order;
-                    console.log(parsed);
-                }
-            });
-        })
-        .on('error', function (e) {
-            console.log("Got error: " + e.message);
-        });
+        if (parseInt(payload.user_id > 0) && parseInt(payload.order_id) > 0) {
+            http.get('http://54.89.141.77/1minutewin/index.php/home/bid/' + payload.user_id + '/' + payload.order_id + '/' + payload.amount, function (res) {
+                var body = ''; // Will contain the final response
+                res.on('data', function (data) {
+                    body += data;
+                });
+                res.on('end', function () {
+                    var parsed = JSON.parse(body);
+                    if (parsed.message === 'Bid accepted') {
+                        var t1 = new Date(parsed.order.updated_at);
+                        var t2 = new Date(parsed.order.ending_at);
+                        var t3 = new Date();
+                        t3.setHours(t3.getHours() - 7);
+                        parsed.order.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
+                        parsed.order.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
+                        socket.emit('order', parsed);
+                        currentOrder = parsed.order;
+                    }
+                });
+            })
+                .on('error', function (e) {
+                    console.log("Got error: " + e.message);
+                });
+        }
     }
 
 })();
