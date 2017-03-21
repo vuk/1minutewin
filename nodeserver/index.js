@@ -67,12 +67,14 @@
     function newbid(payload) {
         console.log(payload);
         if (parseInt(payload.user_id > 0) && parseInt(payload.order_id) > 0) {
+            console.log('if condition met');
             http.get('http://54.89.141.77/1minutewin/index.php/home/bid/' + payload.user_id + '/' + payload.order_id + '/' + payload.amount, function (res) {
                 var body = ''; // Will contain the final response
                 res.on('data', function (data) {
                     body += data;
                 });
                 res.on('end', function () {
+                    console.log('body ready ', body);
                     var parsed = JSON.parse(body);
                     if (parsed.message === 'Bid accepted') {
                         var t1 = new Date(parsed.order.updated_at);
