@@ -23,10 +23,11 @@
                     $('.product_title').html(object.order.product.product_title);
                     $('#order_id').val(object.order.id);
                     $('.bid_count').html(object.order.bids);
-                    $('.bid_for').html(Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
+                    $('.old_price').html(window.minuteSettings.currency_symbol + '' + object.order.product.regular_price);
+                    $('.bid_for').html(window.minuteSettings.currency_symbol + '' + Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
                     $('#order_amount').val(Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
                     $('.image-outer img').attr('src', JSON.parse(object.order.product.pictures)[0]);
-                    $('.shipping').html(object.order.product.shipping + " " + object.order.product.shipping_price);
+                    $('.shipping').html(object.order.product.shipping + " " + window.minuteSettings.currency_symbol + '' +  object.order.product.shipping_price);
                     $('.product_description').html(object.order.product.product_description);
                     $('.discount').html(
                         (Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100) > 0 ?
@@ -47,6 +48,7 @@
             $('#order_id').val('');
             $('#order_amount').val('');
             $('.bid_count').html('');
+            $('.old_price').html('');
             $('.bid_for').html('');
             $('.image-outer img').attr('src', '');
             $('.shipping').html('');
@@ -56,7 +58,9 @@
             $('.product_description').html('');
         },
         sendBid: function () {
+            console.log('Trying to send a bid! ' + parseInt($('#user_id').val()));
             if (parseInt($('#user_id').val()) > 0) {
+                console.log('sending bid!');
                 this.conn.emit('newbid', {
                     'user_id': $('#user_id').val(),
                     'order_id': $('#order_id').val(),
@@ -98,6 +102,7 @@
     });
 
     $('.buy_button').click(function (e) {
+        console.log('Bid button clicked!');
         e.preventDefault();
         MinuteWin.sendBid();
     });

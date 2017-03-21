@@ -23,17 +23,17 @@
                                         <?php endif; ?>
                                         <div class="row keep-in">
                                             <div class="columns large-6 small-6">
-                                                <span><span class="bid_count"><?= $order->bids ?></span> Bids</span>
+                                                <span><span class="bid_count"></span> Bids</span>
                                             </div>
                                             <div class="columns large-6 small-6 text-right">
-                                                <span id="old-price" class="old_price"><?= $settings->currency_symbol ?></span>
+                                                <span id="old-price" class="old_price"></span>
                                                 <span id="discount" class="discount"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="buy-button">
                                         <a href="#buy" class="success button expanded buy_button">
-                                            <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount" class="bid_for"></span></span>
+                                            <span class="btn-price">Bid for <span id="amount" class="bid_for"></span></span>
                                             <span><small class="shipping"></small></span>
                                             <span class="clearfix">
                                                 </span>
@@ -84,14 +84,14 @@
                                     <span><span id="bids" class="bid_count"></span> Bids</span>
                                 </div>
                                 <div class="columns large-6 small-6 text-right">
-                                    <span class="old_price"><?= $settings->currency_symbol ?></span>
+                                    <span class="old_price"></span>
                                     <span class="discount"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="buy-button">
                             <a href="#buy" class="success button expanded buy_button">
-                                <span class="btn-price">Bid for <?= $settings->currency_symbol ?><span id="amount" class="bid_for"></span></span>
+                                <span class="btn-price">Bid for <span id="amount" class="bid_for"></span></span>
                                 <span><small class="shipping"></small></span>
                                 <span class="clearfix">
                                                 </span>
@@ -109,4 +109,7 @@
     <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
+    <script>
+        window.minuteSettings = <?= json_encode($settings); ?>
+    </script>
 </div>
