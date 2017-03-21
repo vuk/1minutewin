@@ -71,7 +71,7 @@
             res.on('end', function () {
                 var parsed = JSON.parse(body);
                 if (parsed.message === 'Bid accepted') {
-                    var t1 = new Date(parsed.order.created_at);
+                    var t1 = new Date(parsed.order.updated_at);
                     var t2 = new Date(parsed.order.ending_at);
                     var t3 = new Date();
                     t3.setHours(t3.getHours() - 7);
