@@ -13,7 +13,6 @@
 
     runner.stdout.on('data', function (data) {
         console.info('[INFO] New order: ' + data);
-        data = JSON.parse(data);
         currentOrder = JSON.parse(data);
         var t1 = new Date(currentOrder.updated_at);
         var t2 = new Date(currentOrder.ending_at);
@@ -39,6 +38,7 @@
 
     bidder.stdout.on('data', function (data) {
         console.info('[INFO] New automatic bid ' + data);
+        data = JSON.parse(data);
         if (!data.error) {
             var t1 = new Date(data.order.updated_at);
             var t2 = new Date(data.order.ending_at);
