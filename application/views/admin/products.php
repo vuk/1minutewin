@@ -45,7 +45,13 @@
             </tbody>
         </table>
         <div class="pagination">
-
+            <ul>
+                <?php
+                foreach ($pageLinks as $key => $link):
+                    ?>
+                    <li><a href="<?= $link ?>"><?= $key ?></a></li>
+                <?php endforeach; ?>
+            </ul>
         </div>
     </div>
 </div>

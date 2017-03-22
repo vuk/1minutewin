@@ -27,12 +27,31 @@ class Pages extends CI_Controller {
     /**
      * Index Page for this controller.
      */
-    public function index()
+    public function index($page = 1)
     {
-        $pages = Page::paginate(20);
+        $pages = Page::orderBy('created_at', 'desc')->offset(($page - 1) * 20)->limit(20)->get();
+        $count = Product::count();
+        $paginate = ceil($count / 20);
+
+        if ($page > 1) {
+            $pageLinks['First'] = base_url('/backoffice/pages/index/1');
+            $pageLinks['Previous'] = base_url('/backoffice/pages/index/'.($page - 1));
+        }
+
+        for ($i = 1; $i <= $paginate; $i ++) {
+            if (abs($i - $page) < 4) {
+                $pageLinks[$i] = base_url('/backoffice/pages/index/'.$i);
+            }
+        }
+
+        if ($page < $paginate) {
+            $pageLinks['Next'] = base_url('/backoffice/pages/index/'.($page + 1));
+            $pageLinks['Last'] = base_url('/backoffice/pages/index/'.$paginate);
+        }
 
         $pageContent = [
-            'pages' => $pages
+            'pages' => $pages,
+            'pageLinks' => $pageLinks
         ];
 
         $data = [

@@ -29,12 +29,32 @@ class Products extends CI_Controller
     /**
      * Index Page for this controller.
      */
-    public function index()
+    public function index($page = 1)
     {
-        $products = Product::paginate(20);
+
+        $products = Product::orderBy('created_at', 'desc')->offset(($page - 1) * 20)->limit(20)->get();
+        $count = Product::count();
+        $pages = ceil($count / 20);
+
+        if ($page > 1) {
+            $pageLinks['First'] = base_url('/backoffice/products/index/1');
+            $pageLinks['Previous'] = base_url('/backoffice/products/index/'.($page - 1));
+        }
+
+        for ($i = 1; $i <= $pages; $i ++) {
+            if (abs($i - $page) < 4) {
+                $pageLinks[$i] = base_url('/backoffice/products/index/'.$i);
+            }
+        }
+
+        if ($page < $pages) {
+            $pageLinks['Next'] = base_url('/backoffice/products/index/'.($page + 1));
+            $pageLinks['Last'] = base_url('/backoffice/products/index/'.$pages);
+        }
 
         $pageContent = [
-            'products' => $products
+            'products' => $products,
+            'pageLinks' => $pageLinks
         ];
 
         $data = [
