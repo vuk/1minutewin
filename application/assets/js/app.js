@@ -27,12 +27,19 @@
                     $('.product_title').html(object.order.product.product_title);
                     $('#order_id').val(object.order.id);
                     $('.bid_count').html(object.order.bids);
+                    var images = JSON.parse(object.order.product.pictures);
+                    var self = this;
+                    $('.thumbs').html('');
+                    images.forEach(function (item) {
+                        $('.thumbs').append('<div class="thumb-wrapper"><img class="thumb" data-full="' + self.baseURL + item + '" src="' + self.baseURL + '_thumb/' + item + '"/></div>');
+                    });
                     $('.old_price').html(window.minuteSettings.currency_symbol + '' + object.order.product.regular_price);
                     $('.bid_for').html(window.minuteSettings.currency_symbol + '' + Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
                     this.orderPrice = Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10);
                     this.orderID = object.order.id;
                     $('#order_amount').val(Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
                     $('.image-outer img').attr('src', this.baseURL + JSON.parse(object.order.product.pictures)[0]);
+                    $('#activeImage').attr('src', this.baseURL + JSON.parse(object.order.product.pictures)[0]);
                     $('.loader-icon').hide();
                     $('.shipping').html(object.order.product.shipping + " " + window.minuteSettings.currency_symbol + '' +  object.order.product.shipping_price);
                     $('.product_description').html(object.order.product.product_description);
@@ -56,13 +63,16 @@
             $('#order_amount').val('');
             $('.bid_count').html('');
             $('.loader-icon').show();
+            $('.thumbs').html('');
             $('.old_price').html('');
             $('.bid_for').html('');
             $('.image-outer img').attr('src', '');
+            $('#activeImage').attr('src', '');
             $('.shipping').html('');
             $('.winning_append').html('Start bidding');
             $('.user_winning').html('');
             $('.discount').html('');
+            $('.auction_phase').html('');
             $('.product_description').html('');
             this.orderPrice = 0;
             this.orderID = 0;
@@ -87,7 +97,6 @@
                 clearInterval(this.updateInterval)
             }
             fps = fps || 60;
-            console.log(duration, durationLeft);
             this.durationUpdate = durationLeft || duration;
             this.totalDuration = duration;
             var elem = jQuery('.progress-inner');
@@ -99,12 +108,25 @@
                 } else {
                     self.durationUpdate = self.durationUpdate - Math.ceil(1000/fps);
                     elem.height((self.durationUpdate / self.totalDuration * 100).toFixed(4) + '%');
+                    if (self.totalDuration - self.durationUpdate > (parseInt(window.minuteSettings.initial_duration) + parseInt(window.minuteSettings.going_once)) * 1000) {
+                        elem.css('background-color', '#f00');
+                        jQuery('.auction_phase').html('Going twice');
+                        jQuery('.auction_phase').css('color', '#f00');
+                    } else if (self.totalDuration - self.durationUpdate > parseInt(window.minuteSettings.initial_duration) * 1000) {
+                        elem.css('background-color', '#f90');
+                        jQuery('.auction_phase').html('Going once');
+                        jQuery('.auction_phase').css('color', '#f90');
+                    } else {
+                        elem.css('background-color', '#00f');
+                        jQuery('.auction_phase').html('Accepting offers');
+                        jQuery('.auction_phase').css('color', '#00f');
+                    }
                 }
             }
         },
         selectImage: function () {
-            if (jQuery('.thumb-wrapper').length > 0) {
-                jQuery('.thumb-wrapper img').click( function () {
+            if (jQuery('.thumbs').length > 0) {
+                jQuery('.thumbs').on('click', '.thumb', function () {
                     jQuery('#activeImage').attr('src', jQuery(this).attr('data-full'));
                     jQuery('.thumb-wrapper').removeClass('active');
                     jQuery(this).parent().addClass('active');

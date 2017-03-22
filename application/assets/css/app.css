@@ -44,7 +44,7 @@ section.center article.product-wrapper .product-inner {
 }
 section.center article.product-wrapper .vertical-progress {
     width: 1em;
-    background: red;
+    background: #88c1d5;
     float: left;
     display: flex;
     flex-direction: column;

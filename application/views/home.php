@@ -16,12 +16,8 @@
                                 <div class="content-inner">
                                     <h1 class="product_title">Loading...</h1>
                                     <div class="live-data">
-                                        <div id="phase"><span>Accepting bids</span></div>
-                                        <?php if($order->bids > 0): ?>
-                                            <div id="leader"><span><span class="user_winning">John</span> <span class="winning_append">is winning</span></span></div>
-                                        <?php else: ?>
-                                            <div id="leader"><span><span class="user_winning"></span> <span class="winning_append">Start bidding</span></span></div>
-                                        <?php endif; ?>
+                                        <div id="phase"><span class="auction_phase"></span></div>
+                                        <div id="leader"><span><span class="user_winning"></span> <span class="winning_append"></span></span></div>
                                         <div class="row keep-in">
                                             <div class="columns large-6 small-6">
                                                 <span><span class="bid_count"></span> Bids</span>
@@ -45,7 +41,7 @@
                         </a>
                     </div>
                     <div class="vertical-progress">
-                        &nbsp;<div class="progress-inner" style="background: blue"></div>
+                        &nbsp;<div class="progress-inner"></div>
                     </div>
                 </div>
             </article>
@@ -75,12 +71,8 @@
                 <div class="columns large-4">
                     <div class="content-inner modal-content-inner">
                         <div class="live-data">
-                            <div id="phase"><span>Accepting bids</span></div>
-                            <?php if($order->bids > 0): ?>
-                                <div id="leader"><span><span class="user_winning" >John</span> <span class="winning_append">is winning</span></span></div>
-                            <?php else: ?>
-                                <div id="leader"><span><span class="user_winning"></span> <span class="winning_append">Start bidding</span></span></div>
-                            <?php endif; ?>
+                            <div id="phase"><span class="auction_phase"></span></div>
+                            <div id="leader"><span><span class="user_winning"></span> <span class="winning_append"></span></span></div>
                             <div class="row keep-in">
                                 <div class="columns large-6 small-6">
                                     <span><span id="bids" class="bid_count"></span> Bids</span>
