@@ -28,6 +28,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <?= intval($this->session->id) > 0 ? $this->session->id : 0 ?>
                                     <div class="buy-button">
                                         <a href="#buy" class="success button expanded buy_button">
                                             <span class="btn-price">Bid for <span id="amount" class="bid_for"></span></span>
@@ -103,6 +104,7 @@
     <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
+
     <script>
         window.minuteSettings = <?= json_encode($settings); ?>;
         window.user_id = <?= intval($this->session->id) > 0 ? $this->session->id : 0 ?>;

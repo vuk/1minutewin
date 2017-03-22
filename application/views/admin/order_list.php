@@ -34,7 +34,11 @@
                 <tr>
                     <td><?= $order->id; ?></td>
                     <td><a href="<?= base_url('backoffice/products/edit/'.$order->product->id) ?>"><?= $order->product->product_title; ?></a></td>
+                    <?php if (isset($order->user->id)): ?>
                     <td><a href="<?= base_url('backoffice/usermanagement/edit/'.$order->user->id) ?>"><?= $order->user->first_name . ' ' . $order->user->last_name; ?></a></td>
+                    <?php else: ?>
+                        <td><a href="#">User not found</a></td>
+                    <?php endif; ?>
                     <td><?= $settings->currency_symbol ?><?= number_format($order->winning_price, 2); ?></td>
                     <td><?= $order->created_at; ?></td>
                     <td><a href="<?= base_url('backoffice/orders/edit/'.$order->id) ?>" class="button primary small expanded">Edit</a></td>
@@ -53,7 +57,13 @@
             </tbody>
         </table>
         <div class="pagination">
-
+            <ul>
+                <?php
+                    foreach ($pageLinks as $key => $link):
+                ?>
+                        <li><a href="<?= $link ?>"><?= $key ?></a></li>
+                <?php endforeach; ?>
+            </ul>
         </div>
     </div>
 </div>

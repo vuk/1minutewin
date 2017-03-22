@@ -28,14 +28,32 @@ class Usermanagement extends CI_Controller {
     /**
      * Index Page for this controller.
      */
-    public function index()
+    public function index($page = 1)
     {
 
-        $users = User::paginate(20);
+        $users = User::orderBy('created_at', 'desc')->offset(($page - 1) * 20)->limit(20)->get();
+        $count = User::count();
+        $pages = ceil($count / 20);
+
+        if ($page > 1) {
+            $pageLinks['First'] = base_url('/backoffice/usermanagement/index/1');
+            $pageLinks['Previous'] = base_url('/backoffice/usermanagement/index/'.($page - 1));
+        }
+
+        for ($i = 1; $i <= $pages; $i ++) {
+            if (abs($i - $page) < 4) {
+                $pageLinks[$i] = base_url('/backoffice/usermanagement/index/'.$i);
+            }
+        }
+
+        if ($page < $pages) {
+            $pageLinks['Next'] = base_url('/backoffice/usermanagement/index/'.($page + 1));
+            $pageLinks['Last'] = base_url('/backoffice/usermanagement/index/'.$pages);
+        }
 
         $pageContent = [
             'users' => $users,
-            'links' => 'links'
+            'pageLinks' => $pageLinks
         ];
 
         if ($this->session->flashdata('error')) {

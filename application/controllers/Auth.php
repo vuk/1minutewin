@@ -96,6 +96,7 @@ class Auth extends CI_Controller {
             $user->first_name = $userProfile->firstName;
             $user->last_name = $userProfile->lastName;
             $user->user_level = 50;
+            $user->email = $userProfile->email;
             if (strtolower($provider) == "google") {
                 $user->google_id = $userProfile->identifier;
             }
