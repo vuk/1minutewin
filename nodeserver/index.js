@@ -13,6 +13,7 @@
 
     runner.stdout.on('data', function (data) {
         console.info('[INFO] New order: ' + data);
+        data = JSON.parse(data);
         currentOrder = JSON.parse(data);
         var t1 = new Date(currentOrder.updated_at);
         var t2 = new Date(currentOrder.ending_at);
