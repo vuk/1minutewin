@@ -32,6 +32,9 @@ class Bidder extends CI_Controller {
         if ($order->user_id <= 0 && $this->settings->highest_sale > $order->winning_price) {
             return true;
         }
+        echo json_encode([
+            'error' => 'Won\'t bid'
+        ]);
         return false;
     }
 
