@@ -38,6 +38,14 @@
 
     bidder.stdout.on('data', function (data) {
         console.info('[INFO] New automatic bid ' + data);
+        var t1 = new Date(data.order.updated_at);
+        var t2 = new Date(data.order.ending_at);
+        var t3 = new Date();
+        t3.setHours(t3.getHours() - 7);
+        data.order.duration = Math.floor(t2.getTime()) - Math.floor(t1.getTime());
+        data.order.durationLeft = Math.floor(t2.getTime()) - Math.floor(t3.getTime());
+        socket.emit('order', data);
+        currentOrder = data.order;
     });
 
     bidder.stderr.on('data', function (data) {
