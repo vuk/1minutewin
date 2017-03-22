@@ -58,16 +58,21 @@ class Rnnr extends CI_Controller {
     private function clearCurrentOrder () {
         if ($this->currentOrder !== null) {
             if (strtotime($this->currentOrder->ending_at) < strtotime('now')) {
-                $this->currentOrder->ended = 1;
-                unset($this->currentOrder->productObject);
-                unset($this->currentOrder->userObject);
-                unset($this->currentOrder->duration);
-                unset($this->currentOrder->durationLeft);
-                $this->currentOrder->save();
-                $this->currentOrder = null;
-                echo json_encode([
-                    'order' => 'clear'
-                ]);
+                $checkOrder = Order::find($this->currentOrder->id);
+                if (strtotime($checkOrder->ending_at) < strtotime('now')) {
+                    $this->currentOrder->ended = 1;
+                    unset($this->currentOrder->productObject);
+                    unset($this->currentOrder->userObject);
+                    unset($this->currentOrder->duration);
+                    unset($this->currentOrder->durationLeft);
+                    $this->currentOrder->save();
+                    $this->currentOrder = null;
+                    echo json_encode([
+                        'order' => 'clear'
+                    ]);
+                } else {
+                    $this->currentOrder = $checkOrder;
+                }
             }
         }
     }

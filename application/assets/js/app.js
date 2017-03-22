@@ -5,6 +5,7 @@
         baseURL: 'http://1minutewin.com/',
         conn: io('http://54.89.141.77:8080/'),
         orderID: 0,
+        updateInterval: null,
         orderPrice: 0,
         durationUpdate: 0,
         totalDuration: 0,
@@ -82,16 +83,19 @@
             }
         },
         updateScene: function (duration, durationLeft, fps) {
+            if (this.updateInterval) {
+                clearInterval(this.updateInterval)
+            }
             fps = fps || 60;
             console.log(duration, durationLeft);
             this.durationUpdate = durationLeft || duration;
             this.totalDuration = duration;
             var elem = jQuery('.progress-inner');
-            var id = setInterval(frame, Math.ceil(1000/fps));
+            this.updateInterval = setInterval(frame, Math.ceil(1000/fps));
             var self = this;
             function frame() {
                 if (self.durationUpdate <= 0) {
-                    clearInterval(id);
+                    clearInterval(self.updateInterval);
                 } else {
                     self.durationUpdate = self.durationUpdate - Math.ceil(1000/fps);
                     elem.height((self.durationUpdate / self.totalDuration * 100).toFixed(4) + '%');
