@@ -281,8 +281,8 @@ class Products extends CI_Controller
         try {
             $id = (int)$id;
             $product = Product::findOrFail($id);
-            Product::where('published', '=', 1)
-                ->update(['published' => 0]);
+            /*Product::where('published', '=', 1)
+                ->update(['published' => 0]);*/
             $product->published = 1;
             $product->save();
             $this->session->set_flashdata([
