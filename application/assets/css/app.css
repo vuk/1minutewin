@@ -25,6 +25,8 @@ nav.main .dropdown.menu.medium-horizontal > li.is-dropdown-submenu-parent > a::a
 }
 section.center article.product-wrapper a h1{
     color: #333;
+    font-size: 2em;
+    padding: 0 1%;
 }
 section.center article.product-wrapper h1{
     text-align: center;
