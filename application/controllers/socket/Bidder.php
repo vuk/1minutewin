@@ -11,7 +11,7 @@ class Bidder extends CI_Controller {
         }
         while(true) {
             $this->fetchActiveOrder();
-            sleep(5);
+            sleep(2);
         }
     }
 
