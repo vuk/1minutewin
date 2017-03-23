@@ -44,6 +44,12 @@ class Bidder extends CI_Controller {
         $order->winning_price += ceil($order->winning_price/10);
         $order->bids ++;
         $order->user_id = -1;
+        $order->ending_at = date('Y-m-d H:i:s',
+            strtotime('now')
+            + intval($this->settings->initial_duration)
+            + intval($this->settings->going_once)
+            + intval($this->settings->going_twice)
+        );
         $order->save();
         $order->product;
         $order->user;
