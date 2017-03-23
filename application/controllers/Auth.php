@@ -131,4 +131,37 @@ class Auth extends CI_Controller {
         $this->session->sess_destroy();
         redirect('/');
     }
+
+    public function register () {
+        if ($this->session->id > 0 && $this->session->user_level) {
+            redirect('/');
+            die();
+        }
+        try {
+            $order = Order::where('ended', '=', 0)->firstOrFail();
+            $settings = json_decode(Setting::where('settings_key', 'LIKE', 'settings')->first()->value);
+            $data = [
+                'title' => '1 Minute Win',
+                'pages' => $this->pages,
+                'order' => $order,
+                'product'=>$order->product,
+                'settings' => $settings
+            ];
+
+            $this->load->view('header', $data);
+
+            $this->load->view('register', $data);
+
+            $this->load->view('footer', $data);
+        } catch (\Exception $e) {
+            $this->not_found();
+        }
+    }
+
+    public function registration () {
+        if ($this->session->id > 0 && $this->session->user_level) {
+            redirect('/');
+            die();
+        }
+    }
 }

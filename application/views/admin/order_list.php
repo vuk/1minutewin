@@ -33,7 +33,11 @@
             <?php foreach($orders as $key => $order): ?>
                 <tr>
                     <td><?= $order->id; ?></td>
+                    <?php if(isset($order->product->id)): ?>
                     <td><a href="<?= base_url('backoffice/products/edit/'.$order->product->id) ?>"><?= $order->product->product_title; ?></a></td>
+                    <?php else: ?>
+                    <td><a href="">Unknown product</a></td>
+                    <?php endif; ?>
                     <?php if (isset($order->user->id)): ?>
                     <td><a href="<?= base_url('backoffice/usermanagement/edit/'.$order->user->id) ?>"><?= $order->user->first_name . ' ' . $order->user->last_name; ?></a></td>
                     <?php else: ?>

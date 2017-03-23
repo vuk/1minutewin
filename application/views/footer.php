@@ -29,9 +29,16 @@
                     </a>
                 </div>
             </div>
-            <label>
-                <input type="submit" class="button expanded" value="Login">
-            </label>
+            <div class="row collapse">
+                <label>
+                    <input type="submit" class="button expanded" value="Login">
+                </label>
+            </div>
+            <div class="row collapse">
+                <label> You don't have an account yet?
+                    <a href="<?= base_url('auth/register') ?>" class="button expanded">Register</a>
+                </label>
+            </div>
         </fieldset>
         <?php echo form_close(); ?>
     </div>

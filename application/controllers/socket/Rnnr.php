@@ -61,6 +61,11 @@ class Rnnr extends CI_Controller {
                 $checkOrder = Order::find($this->currentOrder->id);
                 if (strtotime($checkOrder->ending_at) < strtotime('now')) {
                     $this->currentOrder->ended = 1;
+                    // If purchase is fake, return stock to previous value
+                    if ($this->currentOrder->user_id < 1) {
+                        $this->currentOrder->product->stock ++;
+                        $this->currentOrder->product->save();
+                    }
                     unset($this->currentOrder->productObject);
                     unset($this->currentOrder->userObject);
                     unset($this->currentOrder->duration);

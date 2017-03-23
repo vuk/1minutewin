@@ -103,7 +103,7 @@ class Products extends CI_Controller
     public function save()
     {
         //var_dump($_FILES['files']);
-        $valid_formats = array("jpg", "png", "gif", "bmp");
+        $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg");
         $max_file_size = 1024 * 2048; //100 kb
         $path = "uploads/"; // Upload directory
         $count = 0;
@@ -157,12 +157,12 @@ class Products extends CI_Controller
                 $product->pictures = json_encode($files);
                 $product->save();
                 $this->session->set_flashdata([
-                    'success' => 'New user added'
+                    'success' => 'New product added'
                 ]);
                 redirect('backoffice/products/edit/' . $product->id);
             } catch (\Exception $e) {
                 $this->session->set_flashdata([
-                    'error' => 'Duplicate email address'
+                    'error' => 'Unknown error occured: ' . $e->getMessage()
                 ]);
                 $this->create();
             }
@@ -204,7 +204,7 @@ class Products extends CI_Controller
 
     public function update()
     {
-        $valid_formats = array("jpg", "png", "gif", "bmp");
+        $valid_formats = array("jpg", "png", "gif", "bmp", "jpeg");
         $max_file_size = 1024 * 2048; //100 kb
         $path = "uploads/"; // Upload directory
         $count = 0;
