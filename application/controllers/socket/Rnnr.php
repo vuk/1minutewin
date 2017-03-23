@@ -4,6 +4,7 @@ class Rnnr extends CI_Controller {
 
     public $currentOrder = null;
     protected $settings = null;
+    protected $previousProduct = null;
 
     public function start() {
         if ($this->settings === null) {
@@ -28,6 +29,15 @@ class Rnnr extends CI_Controller {
                     $this->currentOrder = $order;
                 } else {
                     $product = Product::where('published', '=', 1)->where('stock', '>', 0)->inRandomOrder()->firstOrFail();
+                    // Make sure two same products never come consecutively
+                    $productCount = Product::where('published', '=', 1)->where('stock', '>', 0)->count();
+                    if ($productCount > 1) {
+                        while($product->id === $this->previousProduct) {
+                            $product = Product::where('published', '=', 1)->where('stock', '>', 0)->inRandomOrder()->firstOrFail();
+                        }
+                    }
+                    $this->previousProduct = $product->id;
+                    // End make sure two same products never come consecutively
                     $order = new Order;
                     $order->product_id = $product->id;
                     $order->user_id = 0;
