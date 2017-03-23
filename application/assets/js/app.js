@@ -47,8 +47,9 @@
                         (Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100) > 0 ?
                             Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100)  + "% OFF": ''));
                     if (parseInt(object.order.user_id) === -1) {
-                        var number = Math.floor(Math.random() * 11) + 1;
-                        $('.user_winning').html(window.minuteSettings.bid_names[number - 1]);
+                        var bidders = window.minuteSettings.bid_names.split(",");
+                        var number = Math.floor(Math.random() * bidders.length - 1) + 1;
+                        $('.user_winning').html(bidders[number - 1]);
                         $('.winning_append').html(' is winning');
                     } else {
                         if (object.order.user && object.order.user.first_name) {

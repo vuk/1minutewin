@@ -28,7 +28,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <?= intval($this->session->id) > 0 ? $this->session->id : 0 ?>
                                     <div class="buy-button">
                                         <a href="#buy" class="success button expanded buy_button">
                                             <span class="btn-price">Bid for <span id="amount" class="bid_for"></span></span>
@@ -61,11 +60,7 @@
                             <img id="activeImage" src="<?//= //base_url(json_decode($product->pictures)[0]) ?>"/>
                         </div>
                         <div class="thumbs columns large-4 small-6 medium-6">
-                            <?php /*foreach(json_decode($product->pictures) as $picture): */?><!--
-                                <div class="thumb-wrapper">
-                                    <img class="thumb" data-full="<?/*= base_url($picture) */?>" src="<?/*= base_url('_thumb/'.$picture) */?>"/>
-                                </div>
-                            --><?php /*endforeach; */?>
+
                         </div>
                     </div>
                 </div>
