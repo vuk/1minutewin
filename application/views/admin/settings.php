@@ -78,6 +78,13 @@
                     </div>
                     <div class="row">
                         <div class="medium-12 columns">
+                            <label>Random names for automatic bids (comma separated)
+                                <textarea name="settings[bid_names]"><?= isset($settings->bid_names) ? $settings->bid_names : '' ?></textarea>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="medium-12 columns">
                             <label>
                                 <input type="submit" class="button primary expanded" value="Submit"/>
                             </label>

@@ -46,12 +46,18 @@
                     $('.discount').html(
                         (Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100) > 0 ?
                             Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100)  + "% OFF": ''));
-                    if (object.order.user && object.order.user.first_name) {
-                        $('.user_winning').html(object.order.user.first_name);
+                    if (parseInt(object.order.user_id) === -1) {
+                        var number = Math.floor(Math.random() * 11) + 1;
+                        $('.user_winning').html(window.minuteSettings.bid_names[number - 1]);
                         $('.winning_append').html(' is winning');
                     } else {
-                        $('.winning_append').html('Start bidding');
-                        $('.user_winning').html('');
+                        if (object.order.user && object.order.user.first_name) {
+                            $('.user_winning').html(object.order.user.first_name);
+                            $('.winning_append').html(' is winning');
+                        } else {
+                            $('.winning_append').html('Start bidding');
+                            $('.user_winning').html('');
+                        }
                     }
                     this.updateScene(object.order.duration, object.order.durationLeft);
                 }

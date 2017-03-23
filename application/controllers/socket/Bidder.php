@@ -41,6 +41,7 @@ class Bidder extends CI_Controller {
     public function sendBid($order) {
         $order->winning_price += ceil($order->winning_price/10);
         $order->bids ++;
+        $order->user_id = -1;
         $order->save();
         $order->product;
         $order->user;
