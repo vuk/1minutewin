@@ -29,7 +29,7 @@
                             </label>
                             <div class="row collapse">
                                 <label>
-                                    <input type="submit" class="button expanded" value="Login">
+                                    <input type="submit" class="button expanded" value="Register">
                                 </label>
                             </div>
                             <div class="row collapse">

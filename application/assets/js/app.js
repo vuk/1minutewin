@@ -149,10 +149,12 @@
     };
 
     $(document).ready(function () {
-        MinuteWin.initialize('.product-wrapper');
-        //MinuteWin.updateScene(60000);
-        MinuteWin.selectImage();
-        MinuteWin.heartBeat();
+        if ($('.product-wrapper').length) {
+            MinuteWin.initialize('.product-wrapper');
+            //MinuteWin.updateScene(60000);
+            MinuteWin.selectImage();
+            MinuteWin.heartBeat();
+        }
     });
 
     $('.buy_button').click(function (e) {

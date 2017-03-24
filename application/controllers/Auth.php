@@ -163,5 +163,87 @@ class Auth extends CI_Controller {
             redirect('/');
             die();
         }
+
+        $this->form_validation->set_rules('password', 'Password', 'required',
+            array('required' => 'You must provide a %s.')
+        );
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('first_name', 'First name', 'required');
+        $this->form_validation->set_rules('last_name', 'Last name', 'required');
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->session->set_flashdata([
+                'error' => 'Invalid registration'
+            ]);
+            redirect('/');
+        }
+        else
+        {
+            try {
+                $user = User::where('email', 'LIKE', $this->input->post('email'))
+                    ->first();
+                if (isset($user->id)) {
+                    throw new Exception('User with this email is already registered');
+                } else {
+                    $user = new User;
+                    $user->first_name = $this->input->post('first_name');
+                    $user->last_name = $this->input->post('last_name');
+                    $user->password = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
+                    $user->email = $this->input->post('email');
+                    $user->active = 0;
+                    $user->user_level = 50;
+                    $user->hash = md5($this->input->post('password'));
+                    $user->save();
+
+
+                    $this->load->library('email');
+
+                    $this->email->clear();
+                    $this->email->from('registration@1minutewin.com', '1minutewin');
+                    $this->email->to($user->email);
+
+                    $this->email->subject('1 Minute Win Registration');
+                    $this->email->message('To complete your registration, please click here: ' . base_url('auth/validate/' . $user->hash));
+
+                    $this->email->send();
+                    $this->session->set_flashdata([
+                        'success' => 'Registration successful'
+                    ]);
+                    redirect('/');
+                }
+            } catch (\Exception $e) {
+                $this->session->set_flashdata([
+                    'error' => 'Registration failed'
+                ]);
+                redirect('/');
+            }
+        }
+    }
+
+    public function validate ($hash) {
+        try {
+            $user = User::where('hash', 'LIKE', $hash)->firstOrFail();
+            $user->hash = '';
+            $user->active = 1;
+            $user->save();
+            $this->session->set_flashdata([
+                'success' => 'Validation success'
+            ]);
+
+            $this->session->set_userdata([
+                'id' => $user->id,
+                'email' => $user->email,
+                'user_level' => $user->user_level,
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name
+            ]);
+            redirect('/');
+        } catch (\Exception $e) {
+            $this->session->set_flashdata([
+                'error' => 'Invalid link'
+            ]);
+            redirect('/');
+        }
     }
 }
