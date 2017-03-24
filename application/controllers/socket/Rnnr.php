@@ -40,6 +40,7 @@ class Rnnr extends CI_Controller {
                     // End make sure two same products never come consecutively
                     $order = new Order;
                     $order->product_id = $product->id;
+                    $order->reference = substr(md5(date('Y-m-d H:i:s', strtotime('now'))), 0, 6);
                     $order->user_id = 0;
                     $order->bids = 0;
                     $order->winning_price = $product->initial_price;

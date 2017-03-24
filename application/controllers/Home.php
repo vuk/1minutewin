@@ -75,6 +75,49 @@ class Home extends CI_Controller {
         }
     }
 
+    public function cart () {
+        $data = [
+            'title' => 'Cart | 1 Minute Win',
+            'pages' => $this->pages,
+            'settings' => $this->settings
+        ];
+
+        if (($this->input->get('success') === 'true' || $this->input->get('success') === 'false')) {
+            if ($this->input->get('success') === 'true') {
+                $paymentId = $this->input->get('paymentId');
+                $token = $this->input->get('token');
+                $PayerID = $this->input->get('PayerID');
+                $ref = $this->input->get('ref');
+                $order_id = $this->input->get('order');
+                $order = Order::where('id', '=', $order_id)->where('reference', 'LIKE', $ref)->where('reference', '<>', '')->first();
+                if (!isset($order->id)) {
+                    $data['error'] = 'Payment failed';
+                } else {
+                    $order->paymentId = $paymentId;
+                    $order->token = $token;
+                    $order->PayerID = $PayerID;
+                    $order->status = 2;
+                    $order->reference = '';
+                    $order->save();
+                    $data['success'] = 'Payment successfully processed';
+                }
+            }
+            else {
+                $data['error'] = 'Payment failed';
+            }
+        }
+
+        $data['bought'] = Order::where('status', '=', 1)->where('user_id', '=', $this->session->id)->orderBy('ending_at', 'desc')->get();
+        $data['paid'] = Order::where('status', '=', 2)->where('user_id', '=', $this->session->id)->orderBy('ending_at', 'desc')->get();
+        $data['delivered'] = Order::where('status', '=', 15)->where('user_id', '=', $this->session->id)->orderBy('ending_at', 'desc')->get();
+
+        $this->load->view('header', $data);
+
+        $this->load->view('cart', $data);
+
+        $this->load->view('footer', $data);
+    }
+
     public function not_found ()
     {
         $data = [
