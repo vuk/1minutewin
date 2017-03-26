@@ -99,9 +99,25 @@
     <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
-
-    <script>
-        window.minuteSettings = <?= json_encode($settings); ?>;
-        window.user_id = <?= intval($this->session->id) > 0 ? $this->session->id : 0 ?>;
-    </script>
 </div>
+
+<div class="reveal" id="animatedModal12" data-reveal data-close-on-click="true" data-animation-in="hinge-in-from-top" data-animation-out="hinge-out-from-top">
+    <div class="row">
+        <div class="columns large-12">
+            <h1>You won!</h1>
+            <div class="row">
+                <div class="columns large-12">
+                    <p><a href="/home/cart">Pay with PayPal</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="close-button" data-close aria-label="Close reveal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<script>
+    window.minuteSettings = <?= json_encode($settings); ?>;
+    window.user_id = <?= intval($this->session->id) > 0 ? $this->session->id : 0 ?>;
+</script>

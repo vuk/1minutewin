@@ -5,6 +5,7 @@
         baseURL: 'http://1minutewin.com/',
         conn: io('http://54.89.141.77:8080/'),
         orderID: 0,
+        currentOrder: null,
         updateInterval: null,
         orderPrice: 0,
         durationUpdate: 0,
@@ -24,6 +25,7 @@
                 if (object.order.order === 'clear') {
                     this.clearOrder();
                 } else {
+                    this.currentOrder = object.order;
                     $('.product_title').html(object.order.product.product_title);
                     $('#order_id').val(object.order.id);
                     $('.bid_count').html(object.order.bids);
@@ -101,7 +103,7 @@
         },
         updateScene: function (duration, durationLeft, fps) {
             if (this.updateInterval) {
-                clearInterval(this.updateInterval)
+                clearInterval(this.updateInterval);
             }
             fps = fps || 60;
             this.durationUpdate = durationLeft || duration;
@@ -112,6 +114,10 @@
             function frame() {
                 if (self.durationUpdate <= 0) {
                     clearInterval(self.updateInterval);
+                    if (parseInt(self.currentOrder.user_id) === parseInt(window.user_id)){
+                        $('.auction_phase').html('You won... <a href="/home/cart">Pay with PayPal</a>');
+                        $('#animatedModal12').foundation('open');
+                    }
                 } else {
                     self.durationUpdate = self.durationUpdate - Math.ceil(1000/fps);
                     elem.height((self.durationUpdate / self.totalDuration * 100).toFixed(4) + '%');

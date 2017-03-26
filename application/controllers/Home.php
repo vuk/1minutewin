@@ -76,6 +76,9 @@ class Home extends CI_Controller {
     }
 
     public function cart () {
+        if (!($this->session->id > 0)) {
+            redirect(base_url('404'));
+        }
         $data = [
             'title' => 'Cart | 1 Minute Win',
             'pages' => $this->pages,
