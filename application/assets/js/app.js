@@ -31,6 +31,12 @@
                     $('.bid_count').html(object.order.bids);
                     var images = JSON.parse(object.order.product.pictures);
                     var self = this;
+                    if (object.order.bids > 0) {
+                        $('.buy_button').addClass('animate');
+                        setTimeout(function () {
+                            $('.buy_button').removeClass('animate');
+                        }, 500);
+                    }
                     $('.thumbs').html('');
                     images.forEach(function (item) {
                         $('.thumbs').append('<div class="thumb-wrapper"><img class="thumb" data-full="' + self.baseURL + item + '" src="' + self.baseURL + '_thumb/' + item + '"/></div>');

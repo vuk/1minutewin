@@ -80,7 +80,24 @@ section.center article.product-wrapper .product-content {
     color: #f90;
 }
 .buy-button {
-    margin-top: 0.5em;
+    position: relative;
+    margin-top: 50px;
+}
+a.button.expanded.buy_button {
+    position: absolute;
+    bottom: 0;
+    z-index: 999;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+a.button.expanded.buy_button.animate {
+    margin-left: -10px;
+    width: 110%;
+    height: 50px;
+    font-size: 120%;
 }
 .buy-button a {
     margin: 0;
@@ -94,6 +111,11 @@ section.center article.product-wrapper .product-content {
     float: left;
     color: #fff;
     font-weight: 600;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
 }
 a .row.keep-in {
     color: #333333;
