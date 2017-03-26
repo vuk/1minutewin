@@ -4,6 +4,7 @@ class Bidder extends CI_Controller {
 
     public $currentOrder = null;
     protected $settings = null;
+    protected $bid_value;
 
     public function start () {
         if ($this->settings === null) {
@@ -19,6 +20,10 @@ class Bidder extends CI_Controller {
     public function fetchActiveOrder () {
         try {
             $order = Order::where('ended', '=', 0)->where('ending_at', '>', date('Y-m-d H:i:s', strtotime('now')))->firstOrFail();
+            if ($order->id !== $this->currentOrder) {
+                $this->currentOrder = $order->id;
+                $this->bid_value = rand($this->settings->highest_sale, $order->settings->lowest_sale);
+            }
             if ($this->shouldBid($order)) {
                 $this->sendBid($order);
             }
@@ -30,7 +35,7 @@ class Bidder extends CI_Controller {
     }
 
     public function shouldBid ($order) {
-        if ($order->user_id <= 0 && $this->settings->highest_sale > $order->winning_price) {
+        if ($order->user_id <= 0 && $this->bid_value > $order->winning_price) {
             return true;
         }
         echo json_encode([

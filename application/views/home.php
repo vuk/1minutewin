@@ -97,6 +97,9 @@
                         <h4>Description:</h4>
                         <span class="product_description"></span>
                     </div>
+                    <div class="paypal-notif">
+                        <!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/rs/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/rs/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_now_accepting_pp_2line_w.png" border="0" alt="Now accepting PayPal"></a><div style="text-align:center"><a href="https://www.paypal.com/rs/webapps/mpp/pay-online" target="_blank" ><font size="2" face="Arial" color="#0079CD"><b>How PayPal Works</b></font></a></div></td></tr></table><!-- PayPal Logo -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,25 +113,12 @@
      data-animation-out="hinge-out-from-top">
     <div class="row">
         <div class="columns large-12">
-            <h1>You won!</h1>
+            <h1 style="text-align: center;">You won!</h1>
             <div class="row">
                 <div class="columns large-12">
-                    <h3><a href="/home/cart">Pay with PayPal!</a></h3>
+                    <h3 style="text-align: center;"><a class="button extended large" href="/home/cart">Pay with PayPal!</a></h3>
                 </div>
-                <!-- PayPal Logo -->
-                <table border="0" cellpadding="10" cellspacing="0" align="center">
-                    <tr>
-                        <td align="center"></td>
-                    </tr>
-                    <tr>
-                        <td align="center">
-                            <a href="https://www.paypal.com/rs/webapps/mpp/paypal-popup"
-                                  title="How PayPal Works"
-                                  onclick="javascript:window.open('https://www.paypal.com/rs/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img
-                            src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"
-                            border="0" alt="PayPal Acceptance Mark"></a></td>
-                    </tr>
-                </table><!-- PayPal Logo -->
+                <!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/rs/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/rs/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_now_accepting_pp_2line_w.png" border="0" alt="Now accepting PayPal"></a><div style="text-align:center"><a href="https://www.paypal.com/rs/webapps/mpp/pay-online" target="_blank" ><font size="2" face="Arial" color="#0079CD"><b>How PayPal Works</b></font></a></div></td></tr></table><!-- PayPal Logo -->
             </div>
         </div>
     </div>

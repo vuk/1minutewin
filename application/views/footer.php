@@ -46,6 +46,9 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
+<footer>
+    <!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr style="background:#eeeeee;"><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/rs/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/rs/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_now_accepting_pp_2line_w.png" border="0" alt="Now accepting PayPal"></a><div style="text-align:center"><a href="https://www.paypal.com/rs/webapps/mpp/pay-online" target="_blank" ><font size="2" face="Arial" color="#0079CD"><b>How PayPal Works</b></font></a></div></td></tr></table><!-- PayPal Logo -->
+</footer>
 <script src="<?= base_url(); ?>application/assets/js/vendor/jquery.js"></script>
 <script src="<?= base_url(); ?>application/assets/js/vendor/foundation.min.js"></script>
 <script src="<?= base_url(); ?>application/assets/js/vendor/socket-io.js"></script>
