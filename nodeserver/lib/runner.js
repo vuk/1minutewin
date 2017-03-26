@@ -6,7 +6,7 @@
 
     module.exports = {
         start: function () {
-            return runner = spawn('php', ['./index.php', 'socket/rnnr', 'start'], {
+            return runner = spawn('/opt/bitnami/php/bin/php', ['/home/bitnami/htdocs/1minutewin/index.php', 'socket/rnnr', 'start'], {
                 cwd: '../'
             });
         },

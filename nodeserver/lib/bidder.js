@@ -6,7 +6,7 @@
 
     module.exports = {
         start: function () {
-            return bidder = spawn('php', ['./index.php', 'socket/bidder', 'start'], {
+            return bidder = spawn('/opt/bitnami/php/bin/php', ['/home/bitnami/htdocs/1minutewin/index.php', 'socket/bidder', 'start'], {
                 cwd: '../'
             });
         },
