@@ -36,11 +36,11 @@
                             <?php endforeach; ?>
                             <?php if($this->session->userdata('id')): ?>
                                 <li>
-                                    <a href="javascript:void(0);">
+                                    <a href="javascript:void(0);"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
                                         <?= $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name') ?>
                                     </a>
                                 </li>
-                                <li><a href="<?= base_url('home/cart'); ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
+                                <li><a href="<?= base_url('home/cart'); ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Checkout</a></li>
                                 <li><a href="<?= base_url('auth/logout') ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</a></li>
                             <?php else: ?>
                                 <li><a href="javascript:void(0);" data-toggle="animatedModal11"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>

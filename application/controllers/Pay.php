@@ -71,8 +71,18 @@ class Pay extends CI_Controller
 
             $apiContext = new \PayPal\Rest\ApiContext(
                 new \PayPal\Auth\OAuthTokenCredential(
-                    'AYSq3RDGsmBLJE-otTkBtM-jBRd1TCQwFf9RGfwddNXWz0uFU9ztymylOhRS',     // ClientID
-                    'EGnHDxD_qRPdaLdZz8iCr8N7_MzF-YHPTkjs6NKYQvQSBngp4PTTVWkPZRbL'      // ClientSecret
+                    'AcN5JJUy8u1CAtQQLubF974TdjBDvlTXbCgI01qBaQFHnyTBAcsM9DqOUEp0lW3GvUpiTfrde9XXe2ck',     // ClientID
+                    'EKqA6l_xea-rRy2QurxX1WEzdBFpUls89IDbY0LVYR46k-c5Kkwu4ElwfVaxDbWRmeN2q3d7DXkqrzte'      // ClientSecret
+                )
+            );
+
+            $apiContext->setConfig(
+                array(
+                    'mode' => 'live',
+                    'log.LogEnabled' => true,
+                    'log.FileName' => '../PayPal.log',
+                    'log.LogLevel' => 'FINE', // PLEASE USE FINE LEVEL FOR LOGGING IN LIVE ENVIRONMENTS
+                    'cache.enabled' => true,
                 )
             );
 
