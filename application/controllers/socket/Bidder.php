@@ -35,7 +35,8 @@ class Bidder extends CI_Controller {
     }
 
     public function shouldBid ($order) {
-        if ($order->user_id <= 0 && $this->bid_value > $order->winning_price) {
+        /*if ($order->user_id <= 0 && $this->bid_value > $order->winning_price) {*/
+        if ($this->bid_value > $order->winning_price) {
             return true;
         }
         echo json_encode([
