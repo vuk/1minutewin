@@ -97,7 +97,7 @@ a.button.expanded.buy_button.animate {
     margin-left: -10px;
     width: 110%;
     height: 50px;
-    font-size: 120%;
+    font-size: 18px;
 }
 .buy-button a {
     margin: 0;

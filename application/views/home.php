@@ -10,14 +10,15 @@
                                 <input type="hidden" name="order_id" value="" id="order_id"/>
                                 <input type="hidden" name="order_amount" value="" id="order_amount"/>
                                 <i class="fa fa-refresh fa-spin fa-3x fa-fw loader-icon"></i>
-                                <img src="<?//= //base_url(json_decode($product->pictures)[0]) ?>" alt="">
+                                <img src="<? //= //base_url(json_decode($product->pictures)[0]) ?>" alt="">
                             </div>
                             <div class="content-outer">
                                 <div class="content-inner">
                                     <h1 class="product_title">Loading...</h1>
                                     <div class="live-data">
                                         <div id="phase"><span class="auction_phase"></span></div>
-                                        <div id="leader"><span><span class="user_winning"></span> <span class="winning_append"></span></span></div>
+                                        <div id="leader"><span><span class="user_winning"></span> <span
+                                                        class="winning_append"></span></span></div>
                                         <div class="row keep-in">
                                             <div class="columns large-6 small-6">
                                                 <span><span class="bid_count"></span> Bids</span>
@@ -30,7 +31,8 @@
                                     </div>
                                     <div class="buy-button">
                                         <a href="#buy" class="success button expanded buy_button">
-                                            <span class="btn-price">Bid for <span id="amount" class="bid_for"></span></span>
+                                            <span class="btn-price">Bid for <span id="amount"
+                                                                                  class="bid_for"></span></span>
                                             <span><small class="shipping"></small></span>
                                             <span class="clearfix">
                                                 </span>
@@ -41,14 +43,16 @@
                         </a>
                     </div>
                     <div class="vertical-progress">
-                        &nbsp;<div class="progress-inner"></div>
+                        &nbsp;
+                        <div class="progress-inner"></div>
                     </div>
                 </div>
             </article>
         </div>
     </div>
 </section>
-<div class="reveal large" id="animatedModal10" data-reveal data-close-on-click="true" data-animation-in="hinge-in-from-top" data-animation-out="hinge-out-from-top">
+<div class="reveal large" id="animatedModal10" data-reveal data-close-on-click="true"
+     data-animation-in="hinge-in-from-top" data-animation-out="hinge-out-from-top">
     <div class="row">
         <div class="columns large-12">
             <h1 class="product_title">Loading...</h1>
@@ -57,7 +61,7 @@
                     <div class="gallery-wrapper row">
                         <div class="active-image-wrapper columns large-8 small-12">
                             <i class="fa fa-refresh fa-spin fa-3x fa-fw loader-icon"></i>
-                            <img id="activeImage" src="<?//= //base_url(json_decode($product->pictures)[0]) ?>"/>
+                            <img id="activeImage" src="<? //= //base_url(json_decode($product->pictures)[0]) ?>"/>
                         </div>
                         <div class="thumbs columns large-4 small-6 medium-6">
 
@@ -68,7 +72,8 @@
                     <div class="content-inner modal-content-inner">
                         <div class="live-data">
                             <div id="phase"><span class="auction_phase"></span></div>
-                            <div id="leader"><span><span class="user_winning"></span> <span class="winning_append"></span></span></div>
+                            <div id="leader"><span><span class="user_winning"></span> <span
+                                            class="winning_append"></span></span></div>
                             <div class="row keep-in">
                                 <div class="columns large-6 small-6">
                                     <span><span id="bids" class="bid_count"></span> Bids</span>
@@ -101,14 +106,29 @@
     </button>
 </div>
 
-<div class="reveal" id="animatedModal12" data-reveal data-close-on-click="true" data-animation-in="hinge-in-from-top" data-animation-out="hinge-out-from-top">
+<div class="reveal" id="animatedModal12" data-reveal data-close-on-click="true" data-animation-in="hinge-in-from-top"
+     data-animation-out="hinge-out-from-top">
     <div class="row">
         <div class="columns large-12">
             <h1>You won!</h1>
             <div class="row">
                 <div class="columns large-12">
-                    <p><a href="/home/cart">Pay with PayPal</a></p>
+                    <h3><a href="/home/cart">Pay with PayPal!</a></h3>
                 </div>
+                <!-- PayPal Logo -->
+                <table border="0" cellpadding="10" cellspacing="0" align="center">
+                    <tr>
+                        <td align="center"></td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <a href="https://www.paypal.com/rs/webapps/mpp/paypal-popup"
+                                  title="How PayPal Works"
+                                  onclick="javascript:window.open('https://www.paypal.com/rs/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img
+                            src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png"
+                            border="0" alt="PayPal Acceptance Mark"></a></td>
+                    </tr>
+                </table><!-- PayPal Logo -->
             </div>
         </div>
     </div>
