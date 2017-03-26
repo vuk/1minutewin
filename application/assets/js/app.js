@@ -13,10 +13,9 @@
         initialize: function (selector) {
             var self = this;
             this.conn.on('connect', function(){
-                console.log(self.conn.id); // 'G5p5...'
+                //console.log(self.conn.id); // 'G5p5...'
             });
             this.conn.on('order', function (object) {
-                console.log('event: ', object);
                 self.handleOrder(object);
             });
         },
@@ -93,10 +92,8 @@
             this.orderID = 0;
         },
         sendBid: function () {
-            console.log('Trying to send a bid! ' + parseInt(window.user_id));
             if (parseInt(window.user_id) > 0) {
                 if (parseInt(this.orderID) > 0) {
-                    console.log('sending bid!');
                     this.conn.emit('newbid', {
                         'user_id': window.user_id,
                         'order_id': this.orderID,
@@ -170,7 +167,6 @@
     });
 
     $('.buy_button').click(function (e) {
-        console.log('Bid button clicked!');
         e.preventDefault();
         MinuteWin.sendBid();
     });

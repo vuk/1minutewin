@@ -22,7 +22,7 @@ class Bidder extends CI_Controller {
             $order = Order::where('ended', '=', 0)->where('ending_at', '>', date('Y-m-d H:i:s', strtotime('now')))->firstOrFail();
             if ($order->id !== $this->currentOrder) {
                 $this->currentOrder = $order->id;
-                $this->bid_value = rand($this->settings->highest_sale, $this->settings->lowest_sale);
+                $this->bid_value = rand($this->settings->lowest_sale, $this->settings->highest_sale);
             }
             if ($this->shouldBid($order)) {
                 $this->sendBid($order);
