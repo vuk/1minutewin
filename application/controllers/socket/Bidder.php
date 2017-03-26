@@ -12,7 +12,7 @@ class Bidder extends CI_Controller {
         }
         while(true) {
             $this->fetchActiveOrder();
-            $rand = rand(3, 12);
+            $rand = rand(3, intval($this->settings->initial_duration) + intval($this->settings->going_once) + intval($this->settings->going_twice) - 3);
             sleep($rand);
         }
     }
