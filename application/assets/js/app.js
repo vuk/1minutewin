@@ -3,7 +3,7 @@
 
     MinuteWin = {
         baseURL: 'http://1minutewin.com/',
-        conn: io('http://54.89.141.77:8080/'),
+        conn: null,
         orderID: 0,
         currentOrder: null,
         updateInterval: null,
@@ -12,6 +12,7 @@
         totalDuration: 0,
         initialize: function (selector) {
             var self = this;
+            this.conn = io('http://54.89.141.77:8080/');
             this.conn.on('connect', function(){
                 //console.log(self.conn.id); // 'G5p5...'
             });

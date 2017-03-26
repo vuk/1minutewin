@@ -42,7 +42,11 @@
                                     <?php foreach($bought as $key => $order): ?>
                                         <tr>
                                             <td><?= $order->id ?></td>
+                                            <?php if (isset($order->product->id)): ?>
                                             <td><?= $order->product->product_title ?></td>
+                                            <?php else: ?>
+                                                <td>Product was deleted</td>
+                                            <?php endif; ?>
                                             <td><?= $settings->currency_symbol.number_format($order->winning_price, 2) ?></td>
                                             <td><a target="_blank" href="<?= base_url('pay/pay/'.$order->id) ?>"><i class="fa fa-cc-paypal" aria-hidden="true"></i></a></td>
                                         </tr>
@@ -63,7 +67,11 @@
                                 <?php foreach($paid as $key => $order): ?>
                                     <tr>
                                         <td><?= $order->id ?></td>
-                                        <td><?= $order->product->product_title ?></td>
+                                        <?php if (isset($order->product->id)): ?>
+                                            <td><?= $order->product->product_title ?></td>
+                                        <?php else: ?>
+                                            <td>Product was deleted</td>
+                                        <?php endif; ?>
                                         <td><?= $settings->currency_symbol.number_format($order->winning_price, 2) ?></td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -82,7 +90,11 @@
                                 <?php foreach($delivered as $key => $order): ?>
                                     <tr>
                                         <td><?= $order->id ?></td>
-                                        <td><?= $order->product->product_title ?></td>
+                                        <?php if (isset($order->product->id)): ?>
+                                            <td><?= $order->product->product_title ?></td>
+                                        <?php else: ?>
+                                            <td>Product was deleted</td>
+                                        <?php endif; ?>
                                         <td><?= $settings->currency_symbol.number_format($order->winning_price, 2) ?></td>
                                     </tr>
                                 <?php endforeach; ?>

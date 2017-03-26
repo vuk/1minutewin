@@ -129,12 +129,14 @@ class Pages extends CI_Controller {
     }
 
     public function update () {
-        $this->form_validation->set_rules('page_title', 'Page title', 'required');
-        $this->form_validation->set_rules('page_content', 'Page content', 'required');
-        $this->form_validation->set_rules('slug', 'Slug', 'required');
+        //$this->form_validation->set_rules('page_title', 'Page title', 'required');
+        //$this->form_validation->set_rules('page_content', 'Page content', 'required');
+        // $this->form_validation->set_rules('slug', 'Slug', 'required');
 
-        if ($this->form_validation->run() == FALSE)
+        /*if ($this->form_validation->run() == FALSE)
         {
+            var_dump("Validation failed");
+            return;
             $this->session->set_flashdata([
                 'error' => 'Invalid action',
                 'errors' => 'errors'
@@ -142,7 +144,7 @@ class Pages extends CI_Controller {
             redirect('backoffice/pages');
         }
         else
-        {
+        {*/
             try {
                 $page = Page::findOrFail($this->input->post('page_id'));
                 $page->page_title = $this->input->post('page_title');
@@ -163,16 +165,18 @@ class Pages extends CI_Controller {
                 ]);
                 redirect('backoffice/pages');
             }
-        }
+        /*}*/
     }
 
     public function save () {
-        $this->form_validation->set_rules('page_title', 'Page title', 'required');
-        $this->form_validation->set_rules('page_content', 'Page content', 'required');
-        $this->form_validation->set_rules('slug', 'Slug', 'required');
+        //$this->form_validation->set_rules('page_title', 'Page title', 'required');
+        //$this->form_validation->set_rules('page_content', 'Page content', 'required');
+        //$this->form_validation->set_rules('slug', 'Slug', 'required');
 
-        if ($this->form_validation->run() == FALSE)
+        /*if ($this->form_validation->run() == FALSE)
         {
+            var_dump("Validation failed");
+            return;
             $this->session->set_flashdata([
                 'error' => 'Invalid action',
                 'errors' => 'errors'
@@ -180,7 +184,7 @@ class Pages extends CI_Controller {
             redirect('backoffice/pages');
         }
         else
-        {
+        {*/
             try {
                 $page = new Page;
                 $page->page_title = $this->input->post('page_title');
@@ -194,12 +198,14 @@ class Pages extends CI_Controller {
                 ]);
                 redirect('backoffice/pages/edit/'.$page->id);
             } catch (\Exception $e) {
+                var_dump($e->getMessage());
+                return;
                 $this->session->set_flashdata([
                     'error' => 'Page does not exist'
                 ]);
                 redirect('backoffice/pages');
             }
-        }
+        /*}*/
     }
 
     public function delete ($id) {

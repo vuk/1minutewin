@@ -29,7 +29,7 @@
             <?php foreach($pages as $key => $page): ?>
                 <tr>
                     <td><?= $page->id; ?></td>
-                    <td><a href="<?= base_url($page->slug) ?>">
+                    <td><a href="<?= base_url().$page->slug ?>">
                             <?= $page->page_title; ?></a>
                     </td>
                     <td><a href="<?= base_url('backoffice/pages/edit/'.$page->id) ?>" class="button primary small expanded">Edit</a></td>
