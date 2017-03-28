@@ -41,7 +41,7 @@
                     images.forEach(function (item) {
                         $('.thumbs').append('<div class="thumb-wrapper"><img class="thumb" data-full="' + self.baseURL + item + '" src="' + self.baseURL + '_thumb/' + item + '"/></div>');
                     });
-                    $('.old_price').html(window.minuteSettings.currency_symbol + '' + object.order.product.regular_price);
+                    //$('.old_price').html(window.minuteSettings.currency_symbol + '' + object.order.product.regular_price);
                     $('.bid_for').html(window.minuteSettings.currency_symbol + '' + Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10));
                     this.orderPrice = Math.ceil(parseInt(object.order.winning_price) + parseInt(object.order.winning_price) / 10);
                     this.orderID = object.order.id;
@@ -51,9 +51,9 @@
                     $('.loader-icon').hide();
                     $('.shipping').html(object.order.product.shipping + " " + window.minuteSettings.currency_symbol + '' +  object.order.product.shipping_price);
                     $('.product_description').html(object.order.product.product_description);
-                    $('.discount').html(
+                    /*$('.discount').html(
                         (Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100) > 0 ?
-                            Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100)  + "% OFF": ''));
+                            Math.ceil(100 - object.order.winning_price / object.order.product.regular_price * 100)  + "% OFF": ''));*/
                     if (parseInt(object.order.user_id) === -1) {
                         var bidders = window.minuteSettings.bid_names.split(",");
                         var number = Math.floor(Math.random() * bidders.length - 1) + 1;
