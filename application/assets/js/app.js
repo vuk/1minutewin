@@ -118,7 +118,7 @@
             function frame() {
                 if (self.durationUpdate <= 0) {
                     clearInterval(self.updateInterval);
-                    if (parseInt(self.currentOrder.user_id) === parseInt(window.user_id)){
+                    if (parseInt(self.currentOrder.user_id) === parseInt(window.user_id) && parseInt(window.user_id) > 0){
                         $('.auction_phase').html('You won... <a href="/home/cart">Pay with PayPal</a>');
                         $('#animatedModal12').foundation('open');
                     }
