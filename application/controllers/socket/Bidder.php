@@ -19,6 +19,7 @@ class Bidder extends CI_Controller {
 
     public function fetchActiveOrder () {
         try {
+            $this->settings = json_decode(Setting::where('settings_key', 'LIKE', 'settings')->first()->value);
             $order = Order::where('ended', '=', 0)->where('ending_at', '>', date('Y-m-d H:i:s', strtotime('now')))->firstOrFail();
             if ($order->id !== $this->currentOrder) {
                 $this->currentOrder = $order->id;
