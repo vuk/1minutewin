@@ -139,10 +139,11 @@ class Products extends CI_Controller
                             if (!file_exists($path . date('Ym/', strtotime('now')))) {
                                 mkdir($path . date('Ym/', strtotime('now')), 0775, true);
                             }
-                            if (move_uploaded_file($_FILES["files"]["tmp_name"][$f], $path . date('Ym/', strtotime('now')) . str_replace(' ', '', $name)))
+                            if (move_uploaded_file($_FILES["files"]["tmp_name"][$f], $path . date('Ym/', strtotime('now')) . str_replace(' ', '', $f.date('ymdHis', strtotime('now')).$name)))
                                 $count++; // Number of successfully uploaded file
-                            $files[] = $path . date('Ym/', strtotime('now')) . str_replace(' ', '', $name);
-                            $this->_create_thumbnail($path, $name, 200, 200);
+
+                            $files[] = $path . date('Ym/', strtotime('now')) . str_replace(' ', '', $f.date('ymdHis', strtotime('now')).$name);
+                            $this->_create_thumbnail($path, date('ymdHis', strtotime('now')).$name, 200, 200);
                         }
                     }
                 }
